@@ -1,0 +1,38 @@
+{
+  "score": 9.25,
+  "tier": "target",
+  "doc_type": "resume",
+  "target_company": "VytlOne",
+  "target_role": "Service Technician I - IT Help Desk",
+  "source_url": "",
+  "source_file": "Carlos_Roman_Conville_Service_Technician_Resume.docx",
+  "job_posting": "Service Technician I - IT Help Desk\nJob Locations: US-Remote | US-TX-Amarillo\nJob ID: 2026-3919\nCategory: IT\n\nOverview:\nThe IT Service Technician uses specialized knowledge & skills to perform hardware support and repairs for user departments across the company. Resolves hardware, software, and communication problems/conflicts/defects.\n\nPosition: Remote-based within Continental US. Shift: 10am-7pm CST.\n\nResponsibilities:\n- Investigate, analyze, and resolve hardware and associated software and communications problems with computer systems\n- Perform complex hardware repairs and maintenance on PC-based computers and peripherals\n- Provide advanced hardware technical assistance and support\n- Troubleshoot and resolve system hardware, software, and communications failures and conflicts\n- Install, integrate, and configure new computer systems and hardware for users\n- Provision, modify, and deprovision user access for systems and applications per access policies and SOPs\n- Review, prioritize, and process problem reports; document project progress\n- Document technical processes and support procedures; contribute to standardization\n- Assist in audits: quarterly system access, software, licensing\n- Maintain high-level customer service standards\n- Follow procedures for call length and escalation process\n- Resolve tickets to meet set SLAs\n\nQualifications:\n- High School or equivalent required; Bachelor's in MIS/CS or equivalent preferred\n- 1-2 years PC maintenance/repair, application software support\n- Microsoft Office required; hardware/software certifications a plus\n- ITIL or Cobit knowledge; retail pharmacy ops desirable; corporate environment desirable\n- Advanced repairs/upgrades, troubleshooting, install/configure systems, customer service, self-motivated, mentor co-workers",
+  "judged_by": ["chatgpt"],
+  "scores": {
+    "chatgpt": 9.25,
+    "claude": null
+  },
+  "score_scope": {
+    "chatgpt": "Presentation-only: format, polish, grouping, bullet quality vs 9.4 anchor"
+  },
+  "rationale": {
+    "chatgpt": "Clear improvement over 9.1. Date ranges now use 'to' instead of hyphen spacing; project section is a single tight bullet. Strong one-page hierarchy: service technician summary, technical role first, compressed operations role, military as discipline proof, real education, grouped skills, one concise project bullet. Project bullet is polished and relevant without being overblown.",
+    "claude": null
+  },
+  "key_strengths": [
+    "Correct one-page hierarchy: summary, technical role, compressed ops, military, education, grouped skills, one project bullet",
+    "Date ranges use 'to' (Sept 2024 to Mar 2026) — cleaner than hyphen spacing",
+    "Single merged project bullet reads polished: pipeline work tied to support habit without overblown framing",
+    "Education present (BA Political Science, Rowan, 3.80 Cum Laude); summary uses professional identity not candidate phrasing"
+  ],
+  "key_weaknesses": [
+    "'20-30 staff per shift' still uses hyphen — prefer '20 to 30' to avoid AI-looking dash punctuation",
+    "Skills section still has slashes: 'Ticketing/ITSM' and 'SOPs/Runbooks' — 'and' reads slightly more human"
+  ],
+  "specific_fixes": [
+    "Change '20-30 staff per shift' to '20 to 30 staff per shift'",
+    "Skills: 'Ticketing and ITSM' instead of 'Ticketing/ITSM'",
+    "Skills: 'SOPs and Runbooks' instead of 'SOPs/Runbooks'"
+  ],
+  "tier_definition_match": "Final VytlOne presentation anchor at 9.25. Supersedes 4_target_9.0 and 4_target_9.1 iterations. Pairs with 2_mid_7.6 as before/after for same role. With slash and 20-to-30 cleanup, estimated 9.3-9.35. Ceiling reference remains 4_target_9.4_polished_v12."
+}

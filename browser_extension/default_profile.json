@@ -1,0 +1,347 @@
+{
+  "version": 1,
+  "generated_at": "2026-07-05T22:01:12.621884+00:00",
+  "contact": {
+    "full_name": "Carlos D. Roman-Conville",
+    "first_name": "Carlos",
+    "middle_name": "D.",
+    "last_name": "Roman-Conville",
+    "email": "cromanconville@gmail.com",
+    "phone": "856-397-9706",
+    "phone_digits": "8563979706",
+    "location": "Philadelphia, PA",
+    "street_address": "1229 Chestnut St",
+    "city": "Philadelphia",
+    "state": "PA",
+    "postal_code": "19107",
+    "country": "United States",
+    "linkedin": "https://www.linkedin.com/in/carlos-roman-conville-068781217/",
+    "github": "https://github.com/Carlos-Roman-Conville",
+    "website": ""
+  },
+  "summary": "IT Operations Manager with hands-on experience troubleshooting hardware, operating systems, and networks in high-traffic end-user environments. Leverages discipline from U.S. Army Reserve combat medic experience to diagnose technical issues quickly, document solutions, and train staff for incident response. Proficient in managing complex technical infrastructure including networked RFID, DMX lighting, CCTV, Dante audio, and Arduino-based game controllers. Adept at authoring standard operating procedures and runbooks to streamline issue resolution and enhance operational efficiency.",
+  "experience": [
+    {
+      "company": "BEAT THE BOMB",
+      "title": "Technical Operations Manager",
+      "location": "Philadelphia, PA",
+      "city": "Philadelphia",
+      "state": "PA",
+      "start_date": "2024-09",
+      "end_date": "2026-03",
+      "start_month": "09",
+      "start_year": "2024",
+      "end_month": "03",
+      "end_year": "2026",
+      "start_slash": "09/2024",
+      "end_slash": "03/2026",
+      "start_display": "September 2024",
+      "end_display": "March 2026",
+      "currently_work_here": false,
+      "description": "• Owned NUC kiosks and networked facility infrastructure including CCTV, RFID, DMX, Dante audio, and OBS in a high-traffic venue; coordinated remote access to the Linux-based game backend without administering it.\n• Provided occasional end-user mobile support for iOS/Android devices and took ownership of hardware, operating systems, network, and customer service issues.\n• Resolved live incidents across hardware, operating systems, and network layers under time pressure, utilizing TCP/IP, DNS troubleshooting, Windows server debugging, and .env/JSON configuration management.\n• Performed remote administration using RustDesk and conducted hardware replacements for servers, cameras, and displays.\n• Authored Standard Operating Procedures (SOPs) and runbooks to codify fix paths for recurring incidents, enabling junior staff to resolve issues without escalation and reducing time-to-recovery.\n• Managed help desk ticket system requests with clear verbal communication and improved onboarding efficiency through technical documentation."
+    },
+    {
+      "company": "1-800-GOT-JUNK",
+      "title": "Operations Manager",
+      "location": "NJ/DE Region",
+      "city": "NJ/DE Region",
+      "state": "",
+      "start_date": "2019-03",
+      "end_date": "2021-06",
+      "start_month": "03",
+      "start_year": "2019",
+      "end_month": "06",
+      "end_year": "2021",
+      "start_slash": "03/2019",
+      "end_slash": "06/2021",
+      "start_display": "March 2019",
+      "end_display": "June 2021",
+      "currently_work_here": false,
+      "description": "• Managed customer service, vendor logistics, and dispatch operations, optimizing routing, scheduling, and service completion efficiency.\n• Reduced lost-job rates by approximately 15% through improved pricing negotiations and route coordination, increasing job acceptance and overall completion rates.\n• Coordinated daily logistics and multi-region field operations, overseeing scheduling, routing, and productivity of 50+ frontline personnel across multiple service zones.\n• Managed customer communication and scheduling through Salesforce, ensuring accurate job tracking and service delivery.\n• Resolved customer disputes and pricing negotiations in real time to secure completed jobs and protect revenue.\n• Coordinated fleet readiness and maintenance cycles, conducting inspections, overseeing minor mechanical servicing, and ensuring vehicle compliance."
+    }
+  ],
+  "education": [
+    {
+      "school": "Rowan University",
+      "degree": "Bachelor of Arts in Political Science",
+      "field_of_study": "",
+      "location": "Glassboro, NJ",
+      "graduation_year": "2019",
+      "graduation_display": "May 2019",
+      "details": "Concentration in Political Science. Final GPA: 3.80 (Cum Laude). Completed a Strategic Simulation Project, improving team performance to 2nd out of 8 by optimizing resource allocation, operational flow, logistics, and coordination in a constrained system.",
+      "gpa": ""
+    }
+  ],
+  "military": [
+    {
+      "branch": "U.S. Army Reserve",
+      "role": "68W Combat Medic",
+      "rank": "",
+      "start_month": "10",
+      "start_year": "2011",
+      "end_month": "07",
+      "end_year": "2020",
+      "start_display": "October 2011",
+      "end_display": "July 2020",
+      "description": "• Developed and delivered training curriculum for an 8-person medic team, enhancing medical response capabilities and procedural compliance.\n• Completed timed medical assessments in approximately 35% of allotted time while maintaining accuracy and performance standards in high-pressure environments.\n• Supported large-scale disaster response planning and multi-agency coordination in high-pressure environments, including logistical staging for mass casualty and CBRN (Chemical, Biological, Radiological, Nuclear) scenarios.\n• Coordinated communication between military command, civil agencies (hospitals, EMS, logistics teams), and field units during real-time operational tracking and field exercises."
+    }
+  ],
+  "references": [
+    {
+      "name": "Ian Quirk",
+      "first_name": "Ian",
+      "last_name": "Quirk",
+      "title": "Assistant General Manager",
+      "company": "BEAT THE BOMB",
+      "relationship": "Former manager",
+      "email": "ianquirk91@gmail.com",
+      "phone": "267-394-3526",
+      "phone_digits": "2673943526"
+    },
+    {
+      "name": "Ahmed Nouh",
+      "first_name": "Ahmed",
+      "last_name": "Nouh",
+      "title": "Supervisor",
+      "company": "BEAT THE BOMB",
+      "relationship": "Former supervisor",
+      "email": "",
+      "phone": "203-921-6481",
+      "phone_digits": "2039216481"
+    }
+  ],
+  "screening": {
+    "work_authorization": {
+      "authorized_to_work_us": "Yes",
+      "requires_sponsorship": "No",
+      "requires_sponsorship_future": "No",
+      "us_citizen": "Yes",
+      "security_clearance_current": "No",
+      "security_clearance_eligible": "Yes"
+    },
+    "logistics": {
+      "willing_to_relocate": "No",
+      "willing_to_travel": "Yes",
+      "remote_only": "Yes",
+      "open_to_hybrid_philly": "Yes",
+      "open_to_overnight_travel": "Yes",
+      "reliable_transportation": "Yes",
+      "has_passport": "Yes",
+      "passport_or_can_acquire": "Yes",
+      "has_drivers_license": "Yes",
+      "valid_drivers_license": "Yes",
+      "currently_lives_in_pa": "Yes",
+      "lives_in_listed_states": "Yes",
+      "available_start_date": "Two weeks from offer",
+      "earliest_start_date": "Two weeks from offer",
+      "preferred_work_location": "Philadelphia, PA (remote primary)"
+    },
+    "physical": {
+      "lift_carry_50lb_20ft": "Yes",
+      "lift_carry_heavy_loads": "Yes",
+      "climb_25ft_ladder": "Yes",
+      "climb_ladders": "Yes",
+      "work_elevated_heights": "Yes",
+      "stand_8_to_10_hours": "Yes",
+      "stand_long_periods": "Yes",
+      "temperature_extremes": "Yes",
+      "industrial_environment_ppe": "Yes",
+      "drive_3_to_6_hours": "Yes",
+      "drive_extended_periods": "Yes",
+      "air_travel_short_and_long": "Yes",
+      "air_travel_extended": "Yes"
+    },
+    "compensation": {
+      "desired_salary_number": "75000",
+      "desired_salary_text": "$75,000",
+      "minimum_salary_number": "65000",
+      "salary_expectation_text": "$65,000 - $85,000, negotiable based on total comp",
+      "hourly_rate_text": "$36/hr"
+    },
+    "veteran": {
+      "veteran_status": "I am a protected veteran",
+      "veteran_status_short": "Yes",
+      "military_branch": "U.S. Army Reserve",
+      "discharge_type": "Honorable"
+    },
+    "eeo": {
+      "gender": "Decline to self-identify",
+      "race_ethnicity": "Hispanic or Latino",
+      "hispanic_or_latino": "Yes",
+      "disability_status": "I don't wish to answer",
+      "transgender": "Decline to self-identify",
+      "sexual_orientation": "Decline to self-identify"
+    },
+    "background": {
+      "felony_conviction": "No",
+      "drug_test_consent": "Yes",
+      "background_check_consent": "Yes",
+      "non_compete_active": "No"
+    },
+    "source": {
+      "how_did_you_hear": "LinkedIn",
+      "referred_by": ""
+    },
+    "experience_flags": {
+      "years_of_experience": "2",
+      "highest_education": "Bachelor's Degree",
+      "english_fluency": "Native or bilingual"
+    }
+  },
+  "ats_account": {
+    "version": 1,
+    "password": "rhZI4C@EL$_nP-F6Xsdu",
+    "username_strategy": "email",
+    "security_qa": [
+      {
+        "keywords": [
+          "first pet",
+          "pet's name",
+          "name of your first pet",
+          "childhood pet"
+        ],
+        "answer": "Buddy"
+      },
+      {
+        "keywords": [
+          "mother's maiden",
+          "maiden name"
+        ],
+        "answer": "Garcia"
+      },
+      {
+        "keywords": [
+          "father's middle",
+          "fathers middle"
+        ],
+        "answer": "Luis"
+      },
+      {
+        "keywords": [
+          "city you were born",
+          "city of birth",
+          "birthplace",
+          "where were you born",
+          "city were you born"
+        ],
+        "answer": "Philadelphia"
+      },
+      {
+        "keywords": [
+          "elementary school",
+          "first school"
+        ],
+        "answer": "Washington Elementary"
+      },
+      {
+        "keywords": [
+          "high school",
+          "secondary school"
+        ],
+        "answer": "Cherry Hill East"
+      },
+      {
+        "keywords": [
+          "favorite teacher",
+          "favorite school teacher"
+        ],
+        "answer": "Mr. Roberts"
+      },
+      {
+        "keywords": [
+          "favorite color"
+        ],
+        "answer": "Blue"
+      },
+      {
+        "keywords": [
+          "favorite food",
+          "favorite meal"
+        ],
+        "answer": "Pizza"
+      },
+      {
+        "keywords": [
+          "favorite movie",
+          "favorite film"
+        ],
+        "answer": "Inception"
+      },
+      {
+        "keywords": [
+          "favorite book"
+        ],
+        "answer": "Dune"
+      },
+      {
+        "keywords": [
+          "favorite sport",
+          "favorite team"
+        ],
+        "answer": "Eagles"
+      },
+      {
+        "keywords": [
+          "first car",
+          "make of your first car",
+          "model of your first car"
+        ],
+        "answer": "Honda Civic"
+      },
+      {
+        "keywords": [
+          "street you grew up",
+          "street did you grow up",
+          "childhood street",
+          "street you lived on as a child"
+        ],
+        "answer": "Maple Avenue"
+      },
+      {
+        "keywords": [
+          "best friend",
+          "childhood best friend"
+        ],
+        "answer": "Daniel"
+      },
+      {
+        "keywords": [
+          "maternal grandmother",
+          "grandmother's first name",
+          "grandmothers first name"
+        ],
+        "answer": "Maria"
+      },
+      {
+        "keywords": [
+          "paternal grandfather",
+          "grandfather's first name",
+          "grandfathers first name"
+        ],
+        "answer": "Roberto"
+      },
+      {
+        "keywords": [
+          "wedding",
+          "anniversary"
+        ],
+        "answer": "June"
+      },
+      {
+        "keywords": [
+          "graduate high school",
+          "year you graduated",
+          "year of high school graduation"
+        ],
+        "answer": "2008"
+      },
+      {
+        "keywords": [
+          "middle name"
+        ],
+        "answer": "David"
+      }
+    ],
+    "default_security_answer": "Philadelphia"
+  }
+}

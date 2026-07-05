@@ -1,0 +1,46 @@
+{
+  "score": 9.0,
+  "tier": "target",
+  "doc_type": "resume",
+  "target_company": "VytlOne",
+  "target_role": "Service Technician I - IT Help Desk",
+  "source_url": "",
+  "job_posting": "Service Technician I - IT Help Desk\nJob Locations: US-Remote | US-TX-Amarillo\nJob ID: 2026-3919\nCategory: IT\n\nOverview:\nThe IT Service Technician uses specialized knowledge & skills to perform hardware support and repairs for user departments across the company. Resolves hardware, software, and communication problems/conflicts/defects.\n\nPosition: Remote-based within Continental US. Shift: 10am-7pm CST.\n\nResponsibilities:\n- Investigate, analyze, and resolve hardware and associated software and communications problems with computer systems\n- Perform complex hardware repairs and maintenance on PC-based computers and peripherals\n- Provide advanced hardware technical assistance and support\n- Troubleshoot and resolve system hardware, software, and communications failures and conflicts\n- Install, integrate, and configure new computer systems and hardware for users\n- Provision, modify, and deprovision user access for systems and applications per access policies and SOPs\n- Review, prioritize, and process problem reports; document project progress\n- Document technical processes and support procedures; contribute to standardization\n- Assist in audits: quarterly system access, software, licensing\n- Maintain high-level customer service standards\n- Follow procedures for call length and escalation process\n- Resolve tickets to meet set SLAs\n\nQualifications:\n- High School or equivalent required; Bachelor's in MIS/CS or equivalent preferred\n- 1-2 years PC maintenance/repair, application software support\n- Microsoft Office required; hardware/software certifications a plus\n- ITIL or Cobit knowledge; retail pharmacy ops desirable; corporate environment desirable\n- Advanced repairs/upgrades, troubleshooting, install/configure systems, customer service, self-motivated, mentor co-workers",
+  "judged_by": ["chatgpt", "claude"],
+  "scores": {
+    "chatgpt": 9.0,
+    "claude": 7.5
+  },
+  "score_scope": {
+    "chatgpt": "Presentation-only: format, polish, grouping, bullet quality vs 9.4 anchor",
+    "claude": "Holistic recruiter screen for IT Service Technician I / Help Desk (includes ATS gaps, certs, education, employment gaps, overqualification)"
+  },
+  "rationale": {
+    "chatgpt": "Strong improvement over the 7.6 draft — clean, one-page, grouped well, and close to the 9.4 anchor style. Summary names the target clearly, avoids 'small-shop scale,' and presents the support flow cleanly: first contact, diagnosis, documentation, user updates, resolution. BEAT THE BOMB restored the 75% wait-time metric, 20-30 staff scope, RustDesk, PC hardware, Windows/network troubleshooting, and SOP/runbook documentation without becoming bloated. 1-800-GOT-JUNK compressed to five bullets covering communication, tracking, Salesforce, coordination, and follow-through. Grouped skills section reads like a polished resume instead of a keyword pile.",
+    "claude": "Well-written and well-targeted for help desk / Service Technician. Writing is clean, bullets action-led, keyword coverage strong for ATS. Strong role-matched summary mirroring help desk language. Quantified results (75% wait-time reduction, ~15% lost-job reduction, medic metric) land well. Good technical keyword density (TCP/IP, DNS, ITSM, RustDesk, Linux, hardware) reads authentic. Skills grouping is scannable. Personal project shows initiative. Held back by: no certifications section (biggest gap for Tier 1 — A+, Network+, Google IT Support, ITIL); no education section at all (HS diploma minimum for ATS); title mismatch (Technical Operations Manager applying to entry-level Service Technician I reads overqualified); ~3-year employment gap (Jun 2021 to Sept 2024 unexplained); help desk work lacks ticket volume / FCR / resolution-time SLA metrics. Minor: drop 'candidate' from summary opener."
+  },
+  "key_strengths": [
+    "Summary mirrors help desk posting language — first-line support, ticket resolution, Windows troubleshooting, documentation",
+    "Quantified results: 75% wait-time reduction, ~15% lost-job reduction, medic assessment speed metric",
+    "Authentic technical keywords: TCP/IP, DNS, ticketing/ITSM, RustDesk, Linux, hardware replacement",
+    "Logical skills grouping: Service Desk, Systems & Hardware, Tools, Soft — clean and scannable",
+    "Personal project ties back to support mindset (spot friction, document, improve workflow)"
+  ],
+  "key_weaknesses": [
+    "No certifications section — CompTIA A+, Network+, Google IT Support, or ITIL Foundation often scanned first for Tier 1 roles",
+    "No education section — HS diploma or coursework absence can trigger ATS rejection",
+    "Title vs target mismatch: Technical Operations Manager applying to Service Technician I reads overqualified or raises 'stepping down' questions",
+    "Unexplained ~3-year gap between 1-800-GOT-JUNK (Jun 2021) and BEAT THE BOMB (Sept 2024)",
+    "Help desk experience lacks ticket volume, first-contact resolution rate, or average resolution time metrics",
+    "Presentation: 'Service Technician I / IT Help Desk candidate' headline slightly clunky; one dense network-incident bullet"
+  ],
+  "specific_fixes": [
+    "Add Certifications section near top (A+, in-progress certs, ITIL if any)",
+    "Add Education section (HS diploma, coursework, military training schools)",
+    "Address overqualification in summary or cover letter; frame manager title as hands-on ops + help desk",
+    "Surface reason for 2021–2024 gap (project, schooling, caregiving, military) if applicable",
+    "Add SLA/ticket metrics to BEAT THE BOMB bullets if available (volume, FCR, avg resolution time)",
+    "Reword summary: drop 'candidate'; use 'Service Technician / IT Help Desk professional...'"
+  ],
+  "tier_definition_match": "Dual-lens anchor on the SAME document. ChatGPT 9.0 = presentation target (polish bar). Claude 7.5 = holistic submit-readiness for this JD — strong writing but substantive gaps (certs, education, gap, overqualification framing). Filename keeps 9.0 as presentation ceiling reference; Claude score signals what still blocks a real screen. Pairs with 2_mid_7.6_VytlOne as before/after on polish."
+}

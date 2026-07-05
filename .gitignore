@@ -1,0 +1,57 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE/editor
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Local data and secrets
+data/
+secrets/
+
+# Personal profile data (do not commit real profile)
+career_profile.json
+job_pipeline/career_profile.json
+job_pipeline/career_master.md
+
+# ATS account-creation secrets — local-only credentials ledger
+job_pipeline/ats_account.json
+job_pipeline/ats_credentials.json
+
+# Personal employment / government / vet-services docs (PDFs, eligibility letters, etc.)
+personal_docs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/

@@ -1,0 +1,36 @@
+{
+  "score": 7.6,
+  "tier": "nearmiss",
+  "doc_type": "resume",
+  "target_company": "Dolbey and Company, Inc.",
+  "target_role": "Technical Support Analyst (healthcare documentation / speech recognition software support)",
+  "source_url": "https://www.indeed.com/job/technical-support-analyst-fc8677fb58c62c2e",
+  "job_posting": "Established 1914 healthcare documentation software developer. Remote, 8am-5pm EST. Required: proprietary application installation/support, troubleshooting + problem-solving, database experience (SQL), customer communication. Preferred: writing Generative AI prompts and writing scripts (VBScript and JavaScript), healthcare industry experience. Windows OS knowledge required.",
+  "judged_by": ["claude"],
+  "scores": {"chatgpt": null, "claude": 7.6},
+  "rationale": {
+    "chatgpt": null,
+    "claude": "Most aligned JD-to-candidate fit of the day per Carlos's own assessment — SQL via BTB MySQL scripts, GenAI via personal AI pipeline (Claude daily, prompt engineering, schema-constrained generation), HIPAA training, proprietary app stack (Unity + Photon = parallel to Dolbey's proprietary speech-rec stack). Foundation is strong. But two recurring overclaim patterns drop it to nearmiss: 'Linux Server Troubleshooting' in skills + 'Linux Photon servers' in BTB bullet + 'Windows and Linux environments' in summary all violate career_master.md §3 L181. 'iOS/Android Mobile Support' in skills violates §3 L179. Both of these would have been auto-dropped by integrity_guards.py strip_honest_limit_violations() as of 2026-06-02. Also misses the Python scripting hook — JD prefers VBScript/JavaScript but Carlos has Python via AI pipeline, an honest analog worth surfacing."
+  },
+  "key_strengths": [
+    "Real SQL grounding via BTB MySQL scripts bullet — direct match to JD 'SQL Database experience'",
+    "HIPAA awareness training certification anchors healthcare-industry plus",
+    "Cover letter mentions GenAI/Claude usage explicitly — strongest JD-aligned differentiator most applicants won't have",
+    "Customer service narrative spans both BTB and GOT-JUNK — proves communication across multiple contexts"
+  ],
+  "key_weaknesses": [
+    "Recurring Linux overclaim — 3 instances (summary + bullet + skills) — career_master.md §3 L181 caps at RustDesk install",
+    "Recurring iOS/Android Mobile Support overclaim in skills — career_master.md §3 L179",
+    "Recurring '.env' spacing typos: 'as well as.env', 'JSON &.env', 'editing.env' — looks unprofessional, suggests tailor template bug",
+    "Python scripting not mentioned anywhere on resume despite JD preferring VBScript/JavaScript and Carlos having real Python via personal AI pipeline (career_master.md §1 L30)",
+    "Recurring double em-dash heading"
+  ],
+  "specific_fixes": [
+    "Honest Linux scope: 'Linux CLI (basic; RustDesk-managed)' in skills + reframe Photon bullet as 'Linux-based game-backend host (RustDesk-managed remote access only)' + soften summary to 'Windows environments and Linux-adjacent contexts'",
+    "Drop 'iOS/Android Mobile Support' from skills",
+    "Add 'Generative AI Prompt Engineering (Claude, daily)' + 'Python Scripting (personal AI tooling)' to skills — both directly map to JD preferred quals",
+    "Fix all 3 '.env' spacing instances (tailor template needs space before '.env' literal)",
+    "Add to summary: explicit GenAI mention since JD weights it heavily"
+  ],
+  "tier_definition_match": "nearmiss: foundation is genuinely strong (real SQL, real GenAI, real HIPAA, real proprietary-app analog) and the gap is purely on the honest-limits + missed-strength surface. With strip_honest_limit_violations() now active, the Linux/iOS-Android claims auto-drop at build time. The Python/GenAI hook is a 'add this signal' improvement, not a 'remove that overclaim' fix."
+}

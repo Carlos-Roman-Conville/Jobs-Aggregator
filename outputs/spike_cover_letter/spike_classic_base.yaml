@@ -1,0 +1,10 @@
+cv:
+  name: "Carlos D. Roman-Conville"
+  location: "Philadelphia, PA"
+  email: "cromanconville@gmail.com"
+  phone: "856-397-9706"
+  sections:
+    cover_letter:
+      - "I am writing to express my interest in the IT Support Specialist position. Over the past several years I have built hands-on experience supporting end users, troubleshooting Windows and Linux systems, and maintaining reliable service desk operations. My work has included imaging workstations, resolving network connectivity issues, and documenting standard operating procedures that reduce repeat incidents.\n\nIn my current technical operations role I manage Linux-based server infrastructure, deploy and maintain kiosk hardware, and support networked AV and RFID systems. I am comfortable working through ticketing queues, prioritizing urgent outages, and communicating clearly with non-technical stakeholders. I take pride in closing loops quickly while keeping documentation accurate for the next technician.\n\nI would welcome the opportunity to bring this mix of help desk discipline and systems troubleshooting to your team. Thank you for considering my application; I am available to discuss how my background aligns with your needs and can start contributing in a remote or hybrid capacity as required."
+design:
+  theme: "classic"

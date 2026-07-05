@@ -1,0 +1,40 @@
+{
+  "score": 9.0,
+  "tier": "target",
+  "doc_type": "cover_letter",
+  "target_company": "VytlOne",
+  "target_role": "Service Technician I - IT Help Desk",
+  "source_url": "",
+  "source_file": "Carlos_Roman_Conville_VytlOne_Cover_Letter.docx",
+  "job_posting": "Service Technician I - IT Help Desk\nJob Locations: US-Remote | US-TX-Amarillo\nJob ID: 2026-3919\nCategory: IT\n\nOverview:\nThe IT Service Technician uses specialized knowledge & skills to perform hardware support and repairs for user departments across the company. Resolves hardware, software, and communication problems/conflicts/defects.\n\nPosition: Remote-based within Continental US. Shift: 10am-7pm CST.\n\nResponsibilities:\n- Investigate, analyze, and resolve hardware and associated software and communications problems with computer systems\n- Perform complex hardware repairs and maintenance on PC-based computers and peripherals\n- Provide advanced hardware technical assistance and support\n- Troubleshoot and resolve system hardware, software, and communications failures and conflicts\n- Install, integrate, and configure new computer systems and hardware for users\n- Provision, modify, and deprovision user access for systems and applications per access policies and SOPs\n- Review, prioritize, and process problem reports; document project progress\n- Document technical processes and support procedures; contribute to standardization\n- Assist in audits: quarterly system access, software, licensing\n- Maintain high-level customer service standards\n- Follow procedures for call length and escalation process\n- Resolve tickets to meet set SLAs\n\nQualifications:\n- High School or equivalent required; Bachelor's in MIS/CS or equivalent preferred\n- 1-2 years PC maintenance/repair, application software support\n- Microsoft Office required; hardware/software certifications a plus\n- ITIL or Cobit knowledge; retail pharmacy ops desirable; corporate environment desirable",
+  "judged_by": ["chatgpt"],
+  "scores": {
+    "chatgpt": 9.0,
+    "claude": null
+  },
+  "score_scope": {
+    "chatgpt": "Presentation-only vs 9.4 Sarnova cover letter ceiling; estimated 9.15-9.2 after paragraph 2 wording cleanup"
+  },
+  "rationale": {
+    "chatgpt": "Major improvement over 8.4 PDF version. Fixed awkward phrases; reads like polished human cover letter. Opening connects healthcare context to practical IT support instead of generic mission-driven language. SLA awareness replaced with natural support-process sentence. M365 describes use categories not app keyword dump. Strong enough as high-quality cover letter anchor; Sarnova 9.3 still sharper with more precise role thesis (first contact, documentation, escalation, compliance, knowledgebase).",
+    "claude": null
+  },
+  "key_strengths": [
+    "Opening ties pharmacy/healthcare work to reliable daily support for system users — grounded, not generic",
+    "Core thesis intact: solve the issue, document the fix, keep operations moving",
+    "Natural ticket/process language: kept tickets clear, tracked what changed, focused on timely resolution",
+    "M365 sentence uses categories (communication, documentation, spreadsheets, meetings, shared files) not app list dump",
+    "Wait-time metric retained as proof; closing is sharper than 8.4 version"
+  ],
+  "key_weaknesses": [
+    "Paragraph 2 slightly list-heavy: 'hardware, operating systems, network, and customer service issues' reads broad",
+    "'That mix maps closely to your need...' sounds slightly mechanical/generated",
+    "'I work best in environments...' is solid but familiar cover-letter polish — not elite-level unique"
+  ],
+  "specific_fixes": [
+    "Smooth paragraph 2: 'I took ownership of hardware, operating-system, network, and user-facing support issues'",
+    "Replace 'That mix maps closely to your need...' with 'That experience fits the role's focus on hardware support, user access work, and clear resolution of hardware, software, and communication problems'",
+    "Optional: leave 'I work best in environments...' or replace with more specific VytlOne tie-in"
+  ],
+  "tier_definition_match": "Final VytlOne cover letter target at 9.0 presentation. Supersedes 3_nearmiss_8.4. Pairs with resume 4_target_9.25 for same role. Ceiling remains 4_target_9.4_Sarnova_Digitech_v2 (9.3+ role thesis precision). Before/after chain: 8.4 nearmiss → 9.0 target."
+}

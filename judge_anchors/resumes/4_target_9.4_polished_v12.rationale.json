@@ -1,0 +1,26 @@
+{
+  "score": 9.4,
+  "tier": "target",
+  "doc_type": "resume",
+  "target_role": "Service Desk Technician",
+  "target_company": "(polished reference version — generic JD)",
+  "judged_by": ["claude"],
+  "scores": {"claude": 9.4},
+  "rationale": {
+    "claude": "This is the editorial bar. Every section made decisive cuts: BEAT THE BOMB is 6 bullets (cap), 1-800-GOT-JUNK is 4 bullets (compressed appropriately for older role), 68W is just 2 bullets (heavily compressed — keeps only the training-curriculum + timed-assessment pieces that map to support-team transferable skills). Skills are GROUPED into 4 themed buckets ('Service Desk & Support', 'Systems & Networking', 'Tools & Documentation', 'Soft') instead of one untriaged blob — this is the structural move that distinguishes target from nearmiss. Summary opens with the JD title verbatim ('Service Desk Technician candidate'). Dates use canonical 'Sept 2024 - Mar 2026' (one consistent abbreviation, dash separator). Strategic Simulation project and Hospitality role were dropped entirely — decisions that demonstrate editorial confidence."
+  },
+  "key_strengths": [
+    "Skills GROUPED into 4 themed buckets — recruiter can scan each category independently",
+    "BTB section limited to exactly 6 bullets, each starting with a strong verb and scoped to one concern",
+    "68W military section compressed to 2 bullets — kept only the transferable-skills pieces, dropped the CBRN/decontamination scope that's noise for help-desk work",
+    "Summary opens with the JD title verbatim and ends with a concrete experience claim ('three years of technical operations work')",
+    "Old roles compressed appropriately — 1-800-GOT-JUNK has 4 bullets (down from 7) because it's >3 years stale; recent role gets the bullet budget"
+  ],
+  "key_weaknesses": [
+    "'Sept' is non-canonical — convention is 3-letter 'Sep' (minor; this is the only date drift in the doc)"
+  ],
+  "specific_fixes": [
+    "Change 'Sept 2024 - Mar 2026' to 'Sep 2024 - Mar 2026' for canonical 3-letter month abbreviations"
+  ],
+  "tier_definition_match": "Matches target (~9.4): the editorial decisions are visible and confident. This is what the pipeline output should aspire to look like. Differences vs nearmiss are not gaps — they're CUTS that nearmiss didn't make (older role compression, themed skills grouping, military section trim, dropped projects/roles)."
+}

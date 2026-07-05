@@ -1,0 +1,20 @@
+{
+  "references": [
+    {
+      "name": "Ian Quirk",
+      "title": "Assistant General Manager",
+      "company": "BEAT THE BOMB",
+      "relationship": "Former manager",
+      "email": "ianquirk91@gmail.com",
+      "phone": "267-394-3526"
+    },
+    {
+      "name": "Ahmed Nouh",
+      "title": "Supervisor",
+      "company": "BEAT THE BOMB",
+      "relationship": "Former supervisor",
+      "email": "",
+      "phone": "203-921-6481"
+    }
+  ]
+}

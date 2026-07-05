@@ -1,0 +1,54 @@
+{
+  "identity": {
+    "primary_domain": "information_technology",
+    "secondary_domain": "technical_operations",
+    "experience_band": "junior",
+    "management_track": false,
+    "tech_as_primary": true,
+    "tech_as_support": false
+  },
+  "identity_prompt": [
+    "Short bullets shown verbatim to the job triage model (edit for your lane). Example: Remote-first jr IT/support/sysadmin-aligned roles.",
+    "Example: Prefer technical implementations and systems support vs pure warehousing/logistics staffing.",
+    "Example: SWE/DevOps titles are stretches unless JD says junior or you already target them in avoid lists."
+  ],
+  "target_role_families": [
+    "it_support",
+    "helpdesk",
+    "technical_operations",
+    "noc_technician",
+    "jr_sysadmin",
+    "systems_support_ops",
+    "implementation",
+    "process_improvement"
+  ],
+  "avoid_role_families": [
+    "logistics",
+    "coordination_pure",
+    "software_engineering",
+    "backend_engineering",
+    "frontend_engineering",
+    "devops_engineering",
+    "site_reliability_engineering",
+    "qa_engineering"
+  ],
+  "target_titles": [
+    "it support specialist",
+    "helpdesk analyst",
+    "desktop support technician",
+    "tier 2 support",
+    "noc technician",
+    "junior systems administrator",
+    "technical operations"
+  ],
+  "avoid_titles": [
+    "principal software engineer",
+    "staff software engineer",
+    "senior software engineer",
+    "senior devops engineer"
+  ],
+  "constraints": {
+    "claim_years_technical_experience": 2,
+    "max_apply_min_years_experience_gap": 4
+  }
+}

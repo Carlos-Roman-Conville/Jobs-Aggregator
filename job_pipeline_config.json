@@ -1,0 +1,219 @@
+{
+  "sources": {
+    "greenhouse": {
+      "enabled": true,
+      "use_search_preferences_seeds": false,
+      "_dropped_2026_05_31": "Removed SF/NY-onsite-first tech companies: anthropic, notion, vercel, linear, replit, huggingface, figma, airtable, discord, stripe, mercury, ramp, wise, mongodb, cloudflare, glean, duolingo, perplexity, openphone, datadog, includedhealth. Their boards dump ~70% Senior/Sales roles Carlos can't apply to, burning LLM tokens on auto-closes. Kept: remote-first generalists + healthcare/RCM + civic-tech mission orgs.",
+      "board_tokens": [
+        "zapier",
+        "gitlab",
+        "automattic",
+        "1password",
+        "hashicorp",
+        "phreesia",
+        "lyrahealth",
+        "springhealth",
+        "headway",
+        "athenahealth",
+        "teladochealth",
+        "codeforamerica",
+        "navapbc",
+        "trussworks",
+        "eff",
+        "propublica",
+        "wikimedia",
+        "accela",
+        "mark43",
+        "versaterm"
+      ]
+    },
+    "lever": {
+      "enabled": true,
+      "companies": [
+        "truss",
+        "medidata",
+        "eventbrite",
+        "aurora-solar",
+        "lookout",
+        "benchling",
+        "gem",
+        "pilot",
+        "airwallex",
+        "matterport",
+        "fivetran",
+        "doordash",
+        "spotify",
+        "ramp",
+        "openai"
+      ],
+      "max_postings": 200,
+      "use_search_preferences_seeds": false
+    },
+    "indeed": {
+      "enabled": true,
+      "use_search_preferences_seeds": false,
+      "apify": {
+        "actor_id": "valig~indeed-jobs-scraper",
+        "title": "it support specialist",
+        "locations": [
+          "remote"
+        ],
+        "country": "us",
+        "limit": 200,
+        "timeout_sec": 300,
+        "use_search_preferences_seeds": true
+      }
+    },
+    "jobspy": {
+      "enabled": true,
+      "use_search_preferences_seeds": true,
+      "site_names": [
+        "linkedin",
+        "indeed"
+      ],
+      "_disabled_sites_note": "indeed re-enabled 2026-06-20 (verified working, ~66% of all application volume). glassdoor=HTTP 400 'location not parsed' (Glassdoor tightened API). zip_recruiter=HTTP 403 Cloudflare bot-block. google=hangs the run when results_wanted > 30 (rate-limit, no timeout). Re-enable those only if JobSpy ships a fix or we add per-site timeout.",
+      "search_term": "desktop support technician",
+      "_location_note": "Narrowed United States -> Philadelphia 2026-06-23. JobSpy now covers LOCAL (<=30 min); national REMOTE comes from the remote feeds + indeed-apify(locations:[remote]). Stops jobspy scraping the whole country.",
+      "location": "Philadelphia, PA",
+      "results_wanted": 50,
+      "hours_old": 168,
+      "country_indeed": "usa"
+    },
+    "usajobs": {
+      "enabled": true,
+      "use_search_preferences_seeds": true,
+      "keyword": "IT Specialist",
+      "_location_note": "Narrowed United States -> Philadelphia 2026-06-23. Was pulling ALL federal jobs nationwide with blank parsed locations = ~55% of the queue. Philly-area federal only now.",
+      "location_name": "Philadelphia, Pennsylvania",
+      "results_per_page": 25,
+      "max_pages": 1
+    },
+    "feeds": {
+      "remoteok": {
+        "enabled": true,
+        "use_search_preferences_seeds": true,
+        "title_slug_filter": "",
+        "limit": 80
+      },
+      "arbeitnow": {
+        "enabled": true,
+        "use_search_preferences_seeds": true,
+        "keyword": "support",
+        "limit": 60
+      },
+      "remotive": {
+        "enabled": true,
+        "use_search_preferences_seeds": true,
+        "category": "customer-support",
+        "search": "",
+        "limit": 80
+      },
+      "themuse": {
+        "enabled": true,
+        "use_search_preferences_seeds": false,
+        "categories": [
+          "Computer and IT",
+          "Customer Service",
+          "Business Operations",
+          "Project Management",
+          "Civic and Government"
+        ],
+        "levels": [
+          "Entry Level",
+          "Mid Level"
+        ],
+        "location": "",
+        "max_pages": 2,
+        "per_page_cap": 60
+      },
+      "jobicy": {
+        "enabled": true,
+        "use_search_preferences_seeds": true,
+        "geo": "usa",
+        "industry": "technology",
+        "tag": "",
+        "count": 50
+      },
+      "working_nomads": {
+        "enabled": true,
+        "use_search_preferences_seeds": true,
+        "category_filter": "sysadmin",
+        "keyword": "",
+        "limit": 100
+      },
+      "wwr_rss": {
+        "enabled": true,
+        "use_search_preferences_seeds": true,
+        "categories": [
+          "remote-customer-support-jobs",
+          "remote-devops-sysadmin-jobs",
+          "remote-business-jobs",
+          "remote-management-and-finance-jobs",
+          "remote-programming-jobs"
+        ],
+        "keyword": "",
+        "limit_per_feed": 60
+      }
+    },
+    "hn_whoishiring": {
+      "enabled": true,
+      "use_search_preferences_seeds": true,
+      "keyword": "support",
+      "require_remote": true,
+      "require_url": true,
+      "limit": 200
+    },
+    "hire_heroes_usa": {
+      "enabled": true,
+      "use_search_preferences_seeds": true,
+      "keyword": "",
+      "limit": 200
+    },
+    "_disabled_pending_playwright": {
+      "_note": "Idealist + NeoGov + Dice all use client-side rendering for their job lists. Building scrapers requires Playwright (browser automation). Wired into config schema but disabled until Playwright is added.",
+      "idealist": {
+        "enabled": false,
+        "professional_levels": ["NONE", "ENTRY_LEVEL", "PROFESSIONAL", "MANAGERIAL"]
+      },
+      "neogov": {
+        "enabled": false,
+        "agencies": ["philadelphia", "pa", "state-of-pennsylvania"]
+      },
+      "dice": {
+        "enabled": false
+      }
+    }
+  },
+  "ingest": {
+    "dedupe_normalized_url": true
+  },
+  "filters": {
+    "min_salary_usd": 0,
+    "location_policy": {
+      "enabled": true,
+      "_metro_note": "Whole-state 'pennsylvania'/'pa' REMOVED 2026-06-23 — a bare PA token let Pittsburgh/Lancaster (5 hrs away) read as Philly-metro. The hard ingest gate (ingest_location_allowed) uses a curated <=30-min town list instead; this short list only feeds the scoring multiplier.",
+      "metro_keywords": [
+        "philadelphia",
+        "philly",
+        "greater philadelphia"
+      ],
+      "reject_non_remote_outside_metro": true,
+      "require_tech_role_for_onsite": true,
+      "remote_bonus_mult": 1.08,
+      "metro_bonus_mult": 1.06
+    },
+    "search_preferences": {
+      "enabled": true,
+      "honor_auto_close": false,
+      "apply_multiplier": true
+    }
+  },
+  "matching": {
+    "_lowered_2026_06_16": "Lowered from 0.26 to 0.10 (combined) and 0.4 to 0.20 (pass-verdict). Mass-apply mode needs high recall not high precision. Bartlett (0.158) and other real fits were silently filtered. Carlos filters at the UI.",
+    "_opened_2026_06_20": "Score gate set to 0.0 (was 0.10/0.20). It was destroying 836 of 1089 closes (76%) — jobs Carlos never saw. The UI min-rank slider already filters by score NON-destructively, so the auto-close was redundant AND lossy. Now only location (onsite/wrong-state) + junk close jobs; everything else reaches the queue and Carlos filters with the slider + lane tabs.",
+    "auto_close_combined_below": 0.0,
+    "auto_close_pass_verdict_combined_below": 0.0,
+    "explain_scores": true,
+    "salary_hard_gate": false
+  }
+}

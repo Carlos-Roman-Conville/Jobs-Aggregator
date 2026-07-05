@@ -1,0 +1,9 @@
+Avo Photonics — Desktop Support Technician (sample fixture for automation).
+
+Junior Systems Administrator. 2+ years Linux. PowerShell required. Active Secret clearance preferred.
+
+Provide end-user desktop and laptop support in a primarily Windows enterprise environment with some Linux workstations. Imaging and patching experience a plus.
+
+Responsibilities include troubleshooting printers, SSO issues, ticketing in ServiceNow-lite workflows, onboarding/offboarding workflows, imaging laptops, administering Active Directory accounts and permissions, familiarity with Entra ID and Microsoft 365 admin concepts, SCCM/MECM or Intune for application deployment.
+
+Experience with virtualization (VMware vSphere/Hyper-V) and monitoring tools such as Splunk or Datadog is desirable.

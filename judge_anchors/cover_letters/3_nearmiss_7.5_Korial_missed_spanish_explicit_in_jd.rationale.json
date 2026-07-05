@@ -1,0 +1,37 @@
+{
+  "score": 7.5,
+  "tier": "nearmiss",
+  "doc_type": "cover_letter",
+  "target_company": "Korial (formerly Energy Robotics)",
+  "target_role": "Technical Support Analyst - Operations (m/f/d)",
+  "source_url": "https://careers.korial.com/jobs/7197206-technical-support-analyst-operations-m-f-d",
+  "job_posting": "Korial follow-the-sun robotic fleet support. Evening shift. JD HELPFUL ADDITIONAL QUALIFICATIONS explicitly states: 'Fluency in Spanish is a significant advantage.' Also lists: Prior exposure to robotics/distributed systems/NOC environments; ITIL Foundation; Zendesk / Jira Service Management.",
+  "judged_by": ["claude"],
+  "scores": {"chatgpt": null, "claude": 7.5},
+  "rationale": {
+    "chatgpt": null,
+    "claude": "Cover letter is well-structured with strong evening-shift narrative and concrete operational metrics. The fatal omission: JD literally says 'Fluency in Spanish is a significant advantage' and the cover letter never mentions Spanish ONCE — despite Carlos being PR-born fluent Spanish (career_master.md L260, consolidated_profile.json languages array). This is the SECOND build today with this exact gap (Celestar SOUTHCOM also missed Spanish despite SOUTHCOM AOR being Latin America). Pattern suggests the tailor doesn't scan JD for explicit language-requirement callouts. Secondary miss: BTB's Arduino-based RFID + DMX lighting + interactive laser systems are real distributed-embedded systems and would honestly map to JD's 'Prior exposure to robotics systems, distributed systems' optional qual — but cover letter doesn't surface this either. Also has 1 word-drop instance ('At BEAT THE BOMB, didn't wait for a second opinion' — missing 'I' subject), which is the 6th confirmed word-drop instance in the cover letter generator across builds."
+  },
+  "key_strengths": [
+    "Opens with explicit 'follow-the-sun' framing matching JD's exact phrasing",
+    "Specific BTB stack named (NUC kiosks, Linux game-backend host, CCTV, RFID, Dante audio, interactive laser systems)",
+    "Real metric: 75% guest transition reduction with explicit before/after times",
+    "Documentation-first narrative ties to JD's knowledge-base build requirement",
+    "8-year Army Reserve 68W context lands the 'calm methodical triage under pressure' theme honestly"
+  ],
+  "key_weaknesses": [
+    "NO Spanish mention despite JD explicit callout 'Fluency in Spanish is a significant advantage'",
+    "Doesn't surface BTB Arduino/DMX/laser as 'distributed embedded systems' adjacency to JD's robotics-systems optional qual",
+    "Word-drop bug: 'At BEAT THE BOMB, didn't wait for a second opinion' — missing 'I' subject",
+    "ITIL not mentioned even at 'aligned-in-practice' honest level",
+    "Linux scope misrepresented: 'running Linux game-backend servers' — career_master.md §3 L181 caps Linux at RustDesk install only"
+  ],
+  "specific_fixes": [
+    "Add a dedicated paragraph or sentence surfacing Spanish bilingual ability with explicit JD-callout language: 'I am also fluent in Spanish, having grown up in Puerto Rico through 9th grade in Hatillo. Given the JD calls this out as a significant advantage, it's worth surfacing up front.'",
+    "Add a sentence reframing BTB integrated systems as distributed-embedded adjacency to robotic fleets",
+    "Fix the word-drop: 'At BEAT THE BOMB I didn't wait for a second opinion; I diagnosed...'",
+    "Add 'ITIL-aligned in spirit, though I do not yet hold the Foundation certification' as honest framing",
+    "Soften Linux scope: 'On the Linux side, my production exposure is limited to RustDesk-based remote access on the game-backend host; I'm extending CLI fluency through home-lab practice...'"
+  ],
+  "tier_definition_match": "nearmiss: solid structure and authentic voice, but misses JD-explicit language qualification (Spanish), JD-explicit ticketing-tool mention (Jira/Zendesk), and contains the recurring Linux overclaim. A pattern-detection enhancement in the tailor — scan JD for 'Spanish' / 'bilingual' / 'language' and auto-surface matching profile languages — would have closed the Spanish gap automatically."
+}

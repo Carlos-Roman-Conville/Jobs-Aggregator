@@ -1,0 +1,538 @@
+# =============================================================================
+# style_rules.yaml — single MACHINE source of truth for resume + cover-letter
+# presentation rules.
+#
+# Consumed by: job_pipeline/presentation_linter.py (deterministic linter).
+# Documented for humans in: STYLE_GUIDE.md (keep the two in sync).
+#
+# DESIGN CONTRACT
+# ---------------
+# * This file encodes ONLY the deterministic, rule-shaped checks — the things a
+#   regex/string transform can enforce 100% of the time. Subjective judgment
+#   (tone, persuasiveness, relevance) lives in the writer/judge PROMPTS, not here.
+# * This file NEVER overrides truthfulness gates. The truth layer
+#   (truth_classifier.py, evidence_db.py, named_requirements.py, light_exposure)
+#   always wins. Presentation fixes are cosmetic; they must not invent or inflate
+#   a claim. If a rule here would conflict with a truth gate, the truth gate wins.
+# * Severity model per rule class:
+#     autofix -> linter rewrites deterministically, records a note
+#     warn    -> linter flags it, leaves text alone, feeds a critique/score signal
+#     block   -> linter flags it AND marks the field unexportable (regenerate)
+#
+# Edit this file to change behavior. Add new bans/synonyms here, not in code.
+# =============================================================================
+
+version: 2
+meta:
+  owner: rex
+  purpose: "Deterministic presentation rules for tailored resume + cover letter."
+  truth_layer_wins: true   # presentation linter must never override truth gates
+
+# -----------------------------------------------------------------------------
+# 1. CANONICAL CASING
+# Lowercased lookup key -> exact display form. Applied to skills, and to
+# proper-noun occurrences inside summary / bullets / cover-letter prose.
+# This is the fix for "Windows OS troubleshooting" vs "windows os troubleshooting"
+# inconsistency. One spelling, one casing, everywhere.
+# -----------------------------------------------------------------------------
+canonical_casing:
+  # Microsoft stack
+  "m365": "Microsoft 365"
+  "microsoft 365": "Microsoft 365"
+  "ms 365": "Microsoft 365"
+  "o365": "Microsoft 365"
+  "office 365": "Microsoft 365"
+  "microsoft office": "Microsoft Office"
+  "outlook": "Outlook"
+  "word": "Word"
+  "excel": "Excel"
+  "powerpoint": "PowerPoint"
+  "teams": "Microsoft Teams"
+  "microsoft teams": "Microsoft Teams"
+  "onedrive": "OneDrive"
+  "sharepoint": "SharePoint"
+  "active directory": "Active Directory"
+  "azure ad": "Entra ID (Azure AD)"
+  "entra": "Entra ID"
+  "entra id": "Entra ID"
+  "windows": "Windows"
+  "windows os": "Windows OS"
+  "windows 10": "Windows 10"
+  "windows 11": "Windows 11"
+  "powershell": "PowerShell"
+  "intune": "Intune"
+  # OS / platforms
+  "macos": "macOS"
+  "mac os": "macOS"
+  "ios": "iOS"
+  "android": "Android"
+  "linux": "Linux"
+  "ubuntu": "Ubuntu"
+  "chromeos": "ChromeOS"
+  # Google
+  "google workspace": "Google Workspace"
+  "gsuite": "Google Workspace"
+  "g suite": "Google Workspace"
+  "gmail": "Gmail"
+  # Networking / infra (single-token acronyms handled separately, multiword here)
+  "tcp/ip": "TCP/IP"
+  "active directory administration": "Active Directory administration"
+  # Support / ITSM tooling
+  "help desk": "Help Desk"
+  "helpdesk": "Help Desk"
+  "service desk": "Service Desk"
+  "desktop support": "Desktop Support"
+  "ticketing": "Ticketing/ITSM"
+  "ticketing system": "Ticketing/ITSM"
+  "ticketing/itsm": "Ticketing/ITSM"
+  "itsm": "Ticketing/ITSM"
+  "freshdesk": "Freshdesk"
+  "zendesk": "Zendesk"
+  "jira": "Jira"
+  "jira service management": "Jira Service Management"
+  "servicenow": "ServiceNow"
+  "rustdesk": "RustDesk"
+  "teamviewer": "TeamViewer"
+  "anydesk": "AnyDesk"
+  "salesforce": "Salesforce"
+  # Hardware / misc
+  "pc hardware": "PC Hardware"
+  "pc hardware troubleshooting": "PC Hardware Troubleshooting"
+  "remote administration": "Remote Administration"
+  "remote desktop": "Remote Desktop"
+  "software support": "Software Support"
+  "application support": "Application Support"
+  "sops/runbooks": "SOPs/Runbooks"
+  "sops": "SOPs"
+  "runbooks": "Runbooks"
+
+# Tokens that must always render fully uppercase when they appear as a standalone
+# skill or token (never Title-cased to "Dns", "Sso", etc.).
+acronyms_uppercase:
+  - IT
+  - PC
+  - OS
+  - DNS
+  - DHCP
+  - TCP/IP
+  - VPN
+  - RDP
+  - LAN
+  - WAN
+  - VLAN
+  - SSO
+  - MFA
+  - 2FA
+  - ITSM
+  - SLA
+  - SOP
+  - SOPs
+  - KPI
+  - CRM
+  - ERP
+  - SaaS
+  - API
+  - SQL
+  - HTML
+  - CSS
+  - CCTV
+  - RFID
+  - DMX
+  - NUC
+  - PST
+  - EST
+  - CST
+  - MST
+  - EMS
+  - HR
+  - IAM
+  - AD
+  - GPO
+
+# Unambiguous proper nouns that are essentially never used as common nouns, so
+# they are safe to re-case inside PROSE (summary/bullets/cover letter), not just
+# in the skills list. Deliberately excludes ambiguous words like Word/Excel/Teams.
+# key = lowercase form to detect, value = correct display form. Longest match first.
+prose_proper_nouns:
+  "windows os": "Windows OS"
+  "windows": "Windows"
+  "powershell": "PowerShell"
+  "macos": "macOS"
+  "active directory": "Active Directory"
+  "microsoft 365": "Microsoft 365"
+  "sharepoint": "SharePoint"
+  "onedrive": "OneDrive"
+  "salesforce": "Salesforce"
+  "freshdesk": "Freshdesk"
+  "zendesk": "Zendesk"
+  "servicenow": "ServiceNow"
+  "rustdesk": "RustDesk"
+
+# -----------------------------------------------------------------------------
+# 2. SYNONYM / CONCEPT CANONICALIZATION (semantic skills deduper, R0.3)
+# Merge concept variants down to ONE display phrase so the skills line never
+# ships "Ticketing / ITSM", "ticketing", "Help desk ticketing", "ITSM" as four
+# separate items. First match wins; "variants" are matched case-insensitively as
+# whole skill items. The canonical value is authoritative casing (not re-cased).
+# -----------------------------------------------------------------------------
+synonym_map:
+  - canonical: "Ticketing/ITSM"
+    variants: ["ticketing", "ticketing system", "ticket system", "help desk ticketing", "itsm", "ticketing / itsm", "incident ticketing", "service ticketing"]
+  - canonical: "Microsoft 365"
+    variants: ["m365", "ms 365", "o365", "office 365", "microsoft 365 suite", "m365 suite", "microsoft 365 administration"]
+  - canonical: "Active Directory"
+    variants: ["ad", "active directory (basic)", "azure active directory", "ad administration"]
+  - canonical: "Help Desk Support"
+    variants: ["help desk", "helpdesk", "help-desk", "help desk support", "helpdesk support"]
+  - canonical: "Windows OS Troubleshooting"
+    variants: ["windows troubleshooting", "windows os troubleshooting", "windows support"]
+  - canonical: "Remote Administration"
+    variants: ["remote admin", "remote administration", "remote support tools"]
+  - canonical: "PC Hardware Troubleshooting"
+    variants: ["pc hardware", "hardware troubleshooting", "pc hardware support", "computer hardware"]
+
+# -----------------------------------------------------------------------------
+# 3. BANNED-PHRASE LEXICONS
+# Grouped by class so the linter can apply different severity per class and the
+# critique loop can cite the class. Matched case-insensitively as substrings /
+# word-boundaries. Seeded from anti_fluff.RED_FLAG_PHRASES,
+# named_requirements.HYPE_BANNED_WORDS / VAGUE_VERB_BANNED, PLUS the
+# ChatGPT-flagged misses.
+# -----------------------------------------------------------------------------
+banned_phrases:
+  hype:                       # severity: warn (autofix where a replacement exists)
+    - revolutionized
+    - revolutionised
+    - transformed
+    - cutting-edge
+    - cutting edge
+    - world-class
+    - world class
+    - synergy
+    - synergize
+    - single-handedly
+    - single handedly
+    - groundbreaking
+    - game-changing
+    - game changing
+    - game-changer
+    - paradigm
+    - best-in-class
+    - best in class
+    - industry-leading
+    - industry leading
+    - disruptive
+    - unparalleled
+    - visionary
+    - ninja
+    - rockstar
+    - guru
+    - wizard
+
+  vague_verbs:                # severity: autofix (-> phrase_replacements)
+    - leveraged
+    - leverage
+    - utilized
+    - utilize
+    - utilise
+    - spearheaded
+    - orchestrated
+    - facilitated
+    - championed
+
+  hedges:                     # severity: warn — these weaken confidence
+    - help-desk-adjacent
+    - "-adjacent"
+    - somewhat
+    - a bit of
+    - a little
+    - sort of
+    - kind of
+    - i believe
+    - i feel
+    - i think
+    - i would say
+    - to some extent
+    - relatively
+    - fairly
+    - while my background is not
+    - although i don't have
+    - although i do not have
+    - even though i lack
+    - despite not having
+    - at the user level only
+    - at the end-user level only
+
+  informal:                   # severity: warn — too casual for a resume/CL
+    - break/fix work
+    - break/fix
+    - "stuff"
+    - things like
+    - a lot of
+    - lots of
+    - tons of
+    - bunch of
+    - really good
+    - pretty good
+    - kinda
+    - gonna
+    - wanna
+
+  cliches:                    # severity: warn
+    - team player
+    - hit the ground running
+    - wear many hats
+    - go-getter
+    - self-starter
+    - results-driven
+    - detail-oriented
+    - detail oriented
+    - passionate about
+    - think outside the box
+    - dynamic professional
+    - proven track record
+    - wealth of experience
+    - fast-paced environment
+    - fast paced environment
+    - go-to person
+
+  ai_tells:                   # severity: warn (autofix where replacement exists)
+    - confident in my ability
+    - enthusiastic interest
+    - perfectly aligns
+    - perfect fit
+    - aligns perfectly
+    - aligns well with
+    - i am the perfect candidate
+    - delve
+    - delve into
+    - tapestry
+    - testament to
+    - in today's fast-paced world
+    - ever-evolving
+    - ever evolving
+    - in the realm of
+    - navigate the complexities
+    - it is worth noting
+    - boasts
+
+  generic_openers:            # cover-letter only; severity: warn (autofix some)
+    - i am writing to apply
+    - i am writing to express
+    - i am excited to apply
+    - i am writing in response to
+    - please find attached
+    - please find enclosed
+    - to whom it may concern
+    - dear sir or madam
+    - it is with great enthusiasm
+
+  groveling:                  # cover-letter only; severity: warn — undersells
+    - i would be honored
+    - i would be grateful for the opportunity
+    - thank you for considering my application
+    - thank you for taking the time
+    - i hope to hear from you
+    - at your earliest convenience
+    - humbly
+    - i apologize
+
+# Direct one-to-one replacements applied as AUTOFIX (regex word-boundary,
+# case-insensitive). Keep these conservative — a replacement must be safe in
+# every context. Ambiguous ones stay in banned_phrases as warn-only.
+phrase_replacements:
+  leveraged: "used"
+  leverage: "use"
+  utilized: "used"
+  utilize: "use"
+  utilise: "used"
+  spearheaded: "led"
+  orchestrated: "coordinated"
+  facilitated: "ran"
+  "help-desk-adjacent": "practical help desk and technical operations"
+  "break/fix work": "break/fix support"
+  "in order to": "to"
+  "a wide range of": "many"
+  "a wide variety of": "many"
+  "deep understanding of": "experience with"
+  "solid understanding of": "experience with"
+  "demonstrated ability to": "experience"
+  "proven track record of": "experience"
+  "passionate about": "focused on"
+  "detail-oriented": "thorough"
+
+# Verbs the linter prefers when it needs to suggest a replacement for a weak
+# bullet opener. Surface-only suggestion; never auto-injected.
+preferred_action_verbs:
+  - Built
+  - Supported
+  - Resolved
+  - Troubleshot
+  - Documented
+  - Reduced
+  - Coordinated
+  - Improved
+  - Maintained
+  - Configured
+  - Deployed
+  - Administered
+  - Authored
+  - Trained
+  - Managed
+  - Monitored
+  - Escalated
+  - Provisioned
+
+# Weak/passive bullet openers -> flagged (warn). These read as a job description,
+# not an accomplishment.
+weak_bullet_starts:
+  - "responsible for"
+  - "responsibilities included"
+  - "duties included"
+  - "tasked with"
+  - "worked on"
+  - "helped with"
+  - "assisted with"
+  - "in charge of"
+  - "involved in"
+
+# -----------------------------------------------------------------------------
+# 4. BULLET RULES (resume experience/project bullets)
+# -----------------------------------------------------------------------------
+bullets:
+  max_chars: 240            # readability cap (matches rubric_scorer heuristic)
+  max_words: 34
+  min_per_role: 3
+  max_per_role: 6
+  forbid_semicolon: true    # one idea per bullet — split on "; " (autofix)
+  forbid_first_person: true # resume bullets never use I/my/me (warn)
+  require_action_verb_start: true   # warn if bullet doesn't start with a verb
+  terminal_punctuation: "none"      # none | period — be consistent across all
+  forbid_double_space: true
+  max_slashes_per_line: 2   # "Ticketing / ITSM, PST / time-zone" = slash-salad
+  forbid_trailing_conjunction: true # bullet ending in "and"/"or"/"to"
+
+# -----------------------------------------------------------------------------
+# 5. SUMMARY RULES (resume professional summary)
+# -----------------------------------------------------------------------------
+summary:
+  max_chars: 520
+  min_words: 18
+  min_sentences: 1
+  max_sentences: 4
+  forbid_first_person: true
+  must_open_with_target_title: true   # "<Target Title> candidate with ..."
+  title_lead_template: "{title} candidate"
+  # Generic openers that fail must_open_with_target_title (autofix -> retitle).
+  forbidden_openers:
+    - "remote candidate"
+    - "experienced candidate"
+    - "hardworking"
+    - "motivated professional"
+    - "results-driven"
+    - "dedicated professional"
+    - "seasoned professional"
+    - "a candidate"
+  require_no_comma_salad: true        # reject verbless keyword-fragment summaries
+
+# -----------------------------------------------------------------------------
+# 6. SKILLS RULES
+# -----------------------------------------------------------------------------
+skills:
+  technical_cap: 22
+  technical_min: 12
+  soft_cap: 12
+  soft_min: 6
+  case_style: "title"       # title -> apply canonical_casing + Title Case fallback
+  enforce_canonical_casing: true
+  apply_synonym_map: true
+  drop_orphan_fragments:    # leftover parenthetical noise to strip
+    - "(user-level)"
+    - "(user level)"
+    - "(basic)"
+    - "()"
+  drop_tags:                # padding tags dropped UNLESS JD asks for the tool
+    - "(study)"
+    - "(studying)"
+    - "(learning)"
+    - "(self-study)"
+    - "(in progress)"
+  drop_tags_unless_jd_mentions: true
+  forbid_duplicates: true   # exact + canonical-collapsed dupes
+
+# -----------------------------------------------------------------------------
+# 7. PUNCTUATION / TYPOGRAPHY (applies to all prose fields)
+# -----------------------------------------------------------------------------
+punctuation:
+  forbid_double_space: true
+  forbid_space_before_punctuation: true   # "word ," -> "word,"
+  forbid_trailing_whitespace: true
+  collapse_repeated_punctuation: true     # "!!" "?!" ".." -> single
+  date_range_dash: "-"           # plain hyphen for ranges (no en dash)
+  forbid_em_dash: true           # "—" is a top AI tell; rewrite with period/comma/colon
+  forbid_en_dash: true           # "–" as a connector banned; hyphen stays for compounds/dates/phones
+  oxford_comma: true        # flag missing serial comma (warn — heuristic)
+  straight_quotes: true     # normalize curly quotes/apostrophes to straight (ATS-safe)
+  max_consecutive_caps_words: 3   # flag accidental ALL CAPS runs (excl. acronyms)
+
+# -----------------------------------------------------------------------------
+# 8. COVER-LETTER RULES
+# Schema: {opening, body_paragraphs[], closing, proof_targets[]}
+# Salutation/signoff are added at export, so greeting checks are advisory.
+# -----------------------------------------------------------------------------
+cover_letter:
+  min_words: 180
+  max_words: 400
+  min_body_paragraphs: 2
+  max_body_paragraphs: 3
+  opening_max_sentences: 3
+  closing_max_sentences: 2
+  forbid_generic_opener: true     # see banned_phrases.generic_openers
+  forbid_groveling: true          # see banned_phrases.groveling
+  require_company_name: true      # company must appear at least once
+  require_role_name: true         # target role/title must appear
+  forbid_first_person_overload: true  # warn if >40% of sentences start with "I"
+  formality: "professional"
+  forbid_resume_verbatim: true    # body must not paste resume bullets verbatim
+  require_specific_closing: true  # closing must state a concrete next step
+
+# -----------------------------------------------------------------------------
+# 9. CROSS-DOCUMENT CONSISTENCY (resume <-> cover letter)
+# -----------------------------------------------------------------------------
+cross_document:
+  check_target_title_match: true
+  check_years_experience_match: true   # same YOE figure in both
+  check_company_name_match: true       # CL company == package target company
+  check_name_match: true               # candidate name identical
+  forbid_contradictions: true          # naive: same skill claimed + denied
+
+# -----------------------------------------------------------------------------
+# 10. PARSER / ATS SANITY (post-render text; advisory from JSON pre-render)
+# Glyphs are escaped (\uXXXX) so this YAML file itself never carries the bad
+# bytes it is meant to detect.
+# -----------------------------------------------------------------------------
+parser:
+  forbid_glyphs:
+    - "\uFFFD"   # replacement character
+    - "\uFFFE"   # noncharacter
+    - "\uFEFF"   # zero-width no-break space / BOM
+    - "\u200B"   # zero-width space
+  forbid_db_date_format: true    # YYYY-MM in candidate-facing prose = DB leak
+  require_company_on_each_experience: true
+  require_title_on_each_experience: true
+  max_pages: 2
+
+# -----------------------------------------------------------------------------
+# 11. SEVERITY MAP
+# Per rule-id (or rule class) -> autofix | warn | block. The linter looks up the
+# specific rule_id first, then falls back to the class default below.
+# -----------------------------------------------------------------------------
+severity_defaults:
+  casing: autofix
+  synonym_dedupe: autofix
+  vague_verb: autofix
+  phrase_replacement: autofix
+  semicolon_bullet: autofix
+  double_space: autofix
+  curly_quotes: autofix
+  date_dash:

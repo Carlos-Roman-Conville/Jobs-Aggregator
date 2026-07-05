@@ -1,0 +1,29 @@
+{
+  "score": 9.0,
+  "tier": "target",
+  "doc_type": "resume",
+  "target_company": "Company_Name",
+  "target_role": "Role Title",
+  "source_url": "https://example.com/job/12345",
+  "job_posting": "Paste everything from the job URL here — title, company, location, full description, requirements, nice-to-haves.",
+  "judged_by": ["chatgpt"],
+  "scores": {
+    "chatgpt": 9.0,
+    "claude": null
+  },
+  "rationale": {
+    "chatgpt": "Observations about THIS document only. What makes it this score? Phrase as specifics, not rules.",
+    "claude": null
+  },
+  "key_strengths": [
+    "Example: summary names the target role clearly",
+    "Example: bullets are scoped and metric-backed"
+  ],
+  "key_weaknesses": [
+    "Example: skills section is one long ungrouped line"
+  ],
+  "specific_fixes": [
+    "Optional: concrete edits that would raise the score"
+  ],
+  "tier_definition_match": "Why this tier fits (e.g. matches mid: usable but obviously generated)."
+}

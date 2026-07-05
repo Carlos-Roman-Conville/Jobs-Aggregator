@@ -1,0 +1,156 @@
+# =============================================================================
+# Baseline resume for Carlos Roman-Conville
+# Framing: Junior Systems Administrator (~2 years technical experience)
+# Renderer: rendercv 2.x (`pip install rendercv`)
+# Render with: rendercv render carlos_jr_sysadmin.yaml
+#
+# This is the CANONICAL baseline. Per-job tailoring should produce a YAML
+# patch (bullet reordering, summary swap, skill toggle) applied on top of
+# this file at render time — never edit this file for a single application.
+#
+# Honesty rules encoded here:
+#   - 2 years of hands-on technical experience claimed (BEAT THE BOMB tenure)
+#   - Operations background acknowledged as transferable, not primary
+#   - No claims to AD/GPO, hypervisor admin, cloud architecture, IaC, CI/CD
+#   - Linux experience scoped to Photon OS / Ubuntu kiosks, not enterprise fleet
+#   - Networking scoped to troubleshooting + maintenance, not architecture
+# =============================================================================
+
+cv:
+  name: Carlos Roman-Conville
+  email: cromanconville@gmail.com
+  phone: tel:+1-856-397-9706
+  location: Philadelphia, PA
+  # social_networks:
+  #   - network: LinkedIn
+  #     username: <add when ready>
+  #   - network: GitHub
+  #     username: <add when ready>
+
+  sections:
+
+    # -----------------------------------------------------------------------
+    # SUMMARY — leads with technical/sysadmin framing, acknowledges ops bg
+    # Tailoring layer can swap this entire string per JD (see tailoring spec).
+    # -----------------------------------------------------------------------
+    summary:
+      - "Junior Systems Administrator with ~2 years of hands-on experience supporting Linux servers, networked AV/control infrastructure, and end-user devices in a high-uptime production environment. Background in operations management and military medic training brings strong incident response, SOP discipline, and cross-functional coordination skills. Comfortable with TCP/IP and DNS troubleshooting, remote administration, hardware lifecycle, and ticket-driven support work. Actively expanding into scripting and infrastructure automation."
+
+    # -----------------------------------------------------------------------
+    # EXPERIENCE — ordered most-recent-and-most-tech first
+    # BEAT THE BOMB bullets are split into "tech-leaning" (top) and
+    # "ops-leaning" (bottom) so the tailoring layer can drop the bottom
+    # bullets when a JD is purely IC sysadmin/IT support.
+    # -----------------------------------------------------------------------
+    experience:
+
+      - company: BEAT THE BOMB
+        position: Sysadmin / Technical Operations Manager
+        start_date: 2024-09
+        end_date: 2026-03
+        location: Philadelphia, PA
+        highlights:
+          # --- Tech-leaning bullets (always keep) ---
+          - "Administered Linux (Photon OS) game-host servers and ~30 Intel NUC kiosks across the venue floor — package management, log analysis, runtime config tuning via .env / JSON files."
+          - "Diagnosed and resolved TCP/IP and DNS issues across a converged production network carrying CCTV, RFID readers, DMX lighting, Dante audio, and OBS streaming traffic."
+          - "Operated a fleet of remote endpoints with RustDesk and SSH; performed unattended hardware swaps, firmware refreshes, and component replacements (servers, cameras, displays, capture cards)."
+          - "Provided Tier 1/2 support for staff and guest-facing iOS, Android, and Windows devices — account resets, peripheral pairing, network re-association, and triage handoff to the dev team."
+          - "Authored SOPs, runbooks, and troubleshooting trees that cut new-tech onboarding from ~2 weeks to ~5 days and reduced repeat-incident escalations."
+          - "Coordinated cross-functional development of an internal automation pipeline — replaced a manual processing workflow and freed ~10 hours per week of supervisor time."
+          # --- Ops-leaning bullets (tailoring layer may drop for pure IC roles) ---
+          - "Optimized guest transition protocols, reducing average wait time 75% (10 min → 2.5 min) and increasing per-shift throughput."
+          - "Trained and supervised 8-person technical operations team on systems uptime, incident escalation, and venue-wide tooling."
+
+      - company: 1-800-GOT-JUNK
+        position: Assistant Operations Manager
+        start_date: 2019-03
+        end_date: 2021-06
+        location: South Jersey, NJ
+        highlights:
+          - "Managed dispatch operations and vendor logistics — routing, scheduling, and service-completion tracking for a multi-truck regional franchise."
+          - "Reduced lost-job rates ~15% through pricing-negotiation and route-coordination process improvements."
+
+      - company: U.S. Army Reserve, 338th Medical Brigade
+        position: 68W Combat Medic
+        start_date: 2011-10
+        end_date: 2020-07
+        location: Fort Totten, NY
+        highlights:
+          - "Multi-agency disaster response planning and high-pressure incident coordination over an 8-year tenure (HAZMAT-designated unit)."
+          - "Developed and delivered training curriculum for an 8-person medic team — clinical procedures, equipment readiness, and rapid-decision protocols."
+
+    # -----------------------------------------------------------------------
+    # EDUCATION
+    # -----------------------------------------------------------------------
+    education:
+      - institution: Rowan University
+        area: Political Science
+        degree: BA
+        # TODO: confirm exact graduation month with Carlos
+        start_date: 2014-09
+        end_date: 2018-05
+        location: Glassboro, NJ
+        highlights:
+          - "GPA: 3.80 / 4.00"
+
+    # -----------------------------------------------------------------------
+    # TECHNICAL SKILLS — OneLineEntry pairs (label: details)
+    # The tailoring layer may reorder these per JD or drop low-relevance rows.
+    # -----------------------------------------------------------------------
+    technical_skills:
+      - label: Operating Systems
+        details: Linux (Photon OS, Ubuntu basics), Windows 10/11
+      - label: Networking
+        details: TCP/IP troubleshooting, DNS resolution, switch/router triage, CCTV networks, Dante audio routing, network cabling
+      - label: Hardware
+        details: Server rack maintenance, Intel NUC deployment, peripheral replacement, RFID hardware, capture cards (Elgato)
+      - label: Remote Administration
+        details: RustDesk, SSH, RDP
+      - label: Scripting & Config
+        details: Bash (basics), Python (learning, building this job-pipeline), JSON / .env config tuning, SQL queries
+      - label: AV & Streaming
+        details: OBS Studio, Elgato capture, DMX lighting control, Dante audio
+      - label: Business Systems
+        details: Salesforce CRM, SAP, Slack, Notion, Google Workspace
+      - label: Documentation
+        details: SOPs, runbooks, troubleshooting guides, incident reports
+
+    # -----------------------------------------------------------------------
+    # PROJECTS — optional, tailor-toggleable
+    # Useful for tech-heavy interviews where the conversation goes to "what
+    # have you built?" Drop for purely conventional helpdesk JDs.
+    # -----------------------------------------------------------------------
+    projects:
+      - name: AI-Powered Job Application Pipeline
+        date: 2025–present
+        highlights:
+          - "Personal Python project — automated ingest from 10+ job boards (Greenhouse, Lever, USAJobs, JobSpy aggregator, RemoteOK, etc.), LLM-driven posting triage with multi-stage scoring (heuristic + ATS overlap + domain fit + seniority + location policy), Postgres-backed state machine, FastAPI + Streamlit UI."
+          - "Built with Cursor + Claude Code as primary development tooling — exposure to LLM API integration, prompt engineering, OAuth flows, and Postgres schema design."
+
+    # -----------------------------------------------------------------------
+    # CERTIFICATIONS — empty for now
+    # Tailoring layer must NOT invent certs. When Carlos earns CompTIA A+,
+    # Network+, Security+, Linux+, etc., add them here as OneLineEntry rows.
+    # -----------------------------------------------------------------------
+    # certifications:
+    #   - label: CompTIA A+
+    #     details: Earned 2026-MM
+    #   - label: CompTIA Network+
+    #     details: Earned 2026-MM
+
+# =============================================================================
+# DESIGN — engineeringresumes theme: single-column, clean, ATS-parseable
+# Other ATS-safe themes: classic, sb2nov, engineeringclassic
+# Avoid: moderncv (uses icons/colors that some ATS parsers choke on)
+# NOTE: design overrides removed for compatibility with rendercv 2.3 installed
+# locally. Re-add (font_size, margins, etc.) once you upgrade to rendercv 2.8+.
+# =============================================================================
+design:
+  theme: engineeringresumes
+
+# =============================================================================
+# RENDERCV SETTINGS
+# =============================================================================
+rendercv_settings:
+  date: 2026-05-15
+  bold_keywords: []
