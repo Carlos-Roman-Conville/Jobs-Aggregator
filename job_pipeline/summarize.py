@@ -23,8 +23,6 @@ if PROMPT_FRAMING_VERSION not in _PROMPT_FRAMING_VERSION_ORDER:
         "(append older ids before bumping the constant)."
     )
 
-from application_assets import load_application_assets
-from application_asset_strategy import maybe_override_llm_assets, strategy_prompt_block
 from job_pipeline.bootstrap_resume_profile import load_consolidated_profile_text
 from job_pipeline.db import count_items_by_status, get_item, list_items_by_statuses, set_item_summary
 from job_pipeline.ingest import load_pipeline_config, matching_thresholds, salary_hard_gate
@@ -633,19 +631,11 @@ def summarize_pipeline_item(item_id: int, *, force: bool = False) -> Tuple[bool,
     except Exception:
         pass
 
-    assets = json.loads(load_application_assets())
-    resumes = [r for r in (assets.get("resumes") or []) if isinstance(r, dict) and r.get("id")]
-    templates = [t for t in (assets.get("cover_letter_templates") or []) if isinstance(t, dict) and t.get("id")]
-
-    lines = ["APPLICANT_RESUMES_METADATA (pick best id for role):"]
+    resumes: List[Dict[str, Any]] = []
+    templates: List[Dict[str, Any]] = []
     skills: List[str] = []
-    for r in resumes:
-        blob_r = {"id": r.get("id"), "metadata": r.get("metadata"), "suggest_when": r.get("suggest_when")}
-        lines.append(json.dumps({k: v for k, v in blob_r.items() if v}, ensure_ascii=False))
-        meta = r.get("metadata") or {}
-        skills.extend(meta.get("key_skills") or [])
-    asset_blob = "\n".join(lines)
-    strat_block = strategy_prompt_block(title, desc)
+    asset_blob = ""
+    strat_block = ""
     # Lane-aware identity calibration: operations-category jobs are scored against the
     # applicant's operations record (the IT-primary identity deliberately discounts ops
     # and was burying genuine coordinator/specialist fits). IT and all other lanes keep
@@ -864,7 +854,7 @@ def summarize_pipeline_item(item_id: int, *, force: bool = False) -> Tuple[bool,
     if templates:
         tid = str(templates[0].get("id") or "")
 
-    rid, tid, strat_meta = maybe_override_llm_assets(rid, tid, title, desc)
+    strat_meta: Dict[str, Any] = {}
 
     list_rank = _compute_list_rank(fit_raw, verdict, likely_junk)
     qbucket = _quality_bucket(verdict, likely_junk)

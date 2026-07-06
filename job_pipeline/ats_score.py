@@ -6,7 +6,8 @@ import logging
 import re
 from typing import Any, Dict, List, Sequence, Tuple
 
-from application_assets import load_application_assets
+def load_application_assets() -> str:
+    return "{}"
 
 logger = logging.getLogger(__name__)
 
