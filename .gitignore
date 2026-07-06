@@ -31,6 +31,8 @@ secrets/
 career_profile.json
 job_pipeline/career_profile.json
 job_pipeline/career_master.md
+job_pipeline/consolidated_profile.json
+job_pipeline/consolidated_profile.md
 
 # ATS account-creation secrets — local-only credentials ledger
 job_pipeline/ats_account.json

@@ -241,12 +241,11 @@ def _quality_bucket(verdict: str, junk: bool) -> str:
 def _verdict_score_thresholds() -> Dict[str, float]:
     """Numeric floors a verdict must clear to be ratified.
 
-    Defaults chosen so a "Strong" label requires BOTH a defensible blended fit
-    AND a non-trivial ATS overlap. Tunable via env without redeploying code.
+    Tunable via env without redeploying code. ATS is already folded into
+    the blend at 15% weight, so it is not a separate gate.
     """
     return {
         "strong_min_blended": float(os.getenv("VERDICT_STRONG_MIN_BLENDED") or 0.65),
-        "strong_min_ats": float(os.getenv("VERDICT_STRONG_MIN_ATS") or 0.50),
         "pass_below_blended": float(os.getenv("VERDICT_PASS_BELOW_BLENDED") or 0.30),
     }
 
@@ -325,24 +324,28 @@ def _reconcile_verdict_with_scores(
     blended: float,
     ats_score: float,
 ) -> Tuple[str, str]:
-    """Downgrade a verdict that the numeric scores don't actually support.
+    """Reconcile LLM verdict against numeric scores.
 
-    The summarizer LLM overrates fit roughly 25% of the time (see backfill
-    audit). A 35%-ATS / 62%-fit row labeled "strong_match" misleads both the
-    dashboard's ranking and the user's review priorities. This deterministic
-    reconciliation runs after the LLM's verdict comes back and downgrades it
-    when the underlying numbers don't clear the floors.
+    Downgrades when blended score doesn't support the verdict, and upgrades
+    'maybe' to 'strong_match' when the blended score clearly warrants it.
+    ATS is already factored into the blend at 15% weight — gating on it
+    separately would double-penalize jobs whose vocabulary doesn't overlap
+    with the resume (e.g. ops JDs vs IT-heavy resume text).
 
     Returns (new_verdict, reason). Reason is empty string when no change.
     """
     th = _verdict_score_thresholds()
     if verdict == "strong_match":
-        if blended < th["strong_min_blended"] or ats_score < th["strong_min_ats"]:
+        if blended < th["strong_min_blended"]:
             return "maybe", (
                 f"downgraded strong_match -> maybe "
-                f"(blended={blended:.2f}<{th['strong_min_blended']:.2f} or "
-                f"ats={ats_score:.2f}<{th['strong_min_ats']:.2f})"
+                f"(blended={blended:.2f}<{th['strong_min_blended']:.2f})"
             )
+    if verdict == "maybe" and blended >= th["strong_min_blended"]:
+        return "strong_match", (
+            f"upgraded maybe -> strong_match "
+            f"(blended={blended:.2f}>={th['strong_min_blended']:.2f})"
+        )
     if blended < th["pass_below_blended"] and verdict != "pass":
         return "pass", (
             f"downgraded {verdict} -> pass "
@@ -633,9 +636,20 @@ def summarize_pipeline_item(item_id: int, *, force: bool = False) -> Tuple[bool,
 
     resumes: List[Dict[str, Any]] = []
     templates: List[Dict[str, Any]] = []
-    skills: List[str] = []
     asset_blob = ""
     strat_block = ""
+    skills: List[str] = []
+    try:
+        _prof = load_career_profile()
+        _sk = _prof.get("skills", {})
+        if isinstance(_sk, dict):
+            for _v in _sk.values():
+                if isinstance(_v, list):
+                    skills.extend(str(x) for x in _v if x)
+        elif isinstance(_sk, list):
+            skills.extend(str(x) for x in _sk if x)
+    except Exception:
+        pass
     # Lane-aware identity calibration: operations-category jobs are scored against the
     # applicant's operations record (the IT-primary identity deliberately discounts ops
     # and was burying genuine coordinator/specialist fits). IT and all other lanes keep
