@@ -25,7 +25,7 @@ from job_pipeline.db import (
     update_item_status,
 )
 from job_pipeline.ingest import add_manual_posting, run_ingest_all
-from job_pipeline.summarize import run_summarize_batch, run_summarize_all
+from job_pipeline.summarize import run_summarize_batch, run_summarize_all, summarize_pipeline_item
 
 logger = logging.getLogger(__name__)
 
@@ -247,6 +247,39 @@ def svc_count_queue(
         return count_queue_items(status, min_list_rank=min_list_rank, source=source)
     except Exception:
         return 0
+
+
+def svc_resummarize(
+    limit: int = 25,
+    *,
+    category: Optional[str] = None,
+    on_progress=None,
+) -> Dict[str, Any]:
+    """Re-summarize pending_review items with force=True to refresh scores."""
+    rows = list_queue(
+        status="pending_review",
+        limit=limit,
+        order_by_rank=True,
+        category=category,
+    )
+    done, failed, errors = 0, 0, []
+    for i, row in enumerate(rows):
+        iid = row.get("id") or row.get("item_id")
+        if not iid:
+            continue
+        try:
+            ok, msg = summarize_pipeline_item(iid, force=True)
+            if ok:
+                done += 1
+            else:
+                failed += 1
+                errors.append(f"{iid}: {msg}")
+        except Exception as exc:
+            failed += 1
+            errors.append(f"{iid}: {exc}")
+        if on_progress:
+            on_progress(i + 1, len(rows), done, failed)
+    return {"ok": True, "resummarized": done, "failed": failed, "errors": errors[:10]}
 
 
 def svc_manual_add(

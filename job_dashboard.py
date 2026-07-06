@@ -104,6 +104,8 @@ def _sidebar():
 
     st.sidebar.markdown("---")
 
+    rescore_limit = st.sidebar.number_input("Re-score limit", min_value=1, max_value=500, value=25)
+
     status_filter = st.sidebar.selectbox(
         "Status filter",
         ["pending_review", "ingested", "closed", "all"],
@@ -116,6 +118,20 @@ def _sidebar():
         index=0,
         format_func=lambda c: category_label(c) if c != "all" else "All Categories",
     )
+
+    if st.sidebar.button("🔁 Re-score Jobs"):
+        cat = None if category_filter == "all" else category_filter
+        progress = st.sidebar.progress(0, text="Re-scoring...")
+        from job_pipeline.service import svc_resummarize
+
+        def _on_progress(i, total, done, failed):
+            progress.progress(i / total, text=f"Re-scoring {i}/{total} ({done} done, {failed} failed)")
+
+        result = svc_resummarize(limit=int(rescore_limit), category=cat, on_progress=_on_progress)
+        progress.empty()
+        st.sidebar.success(f"Re-scored {result['resummarized']} jobs ({result['failed']} failed)")
+        if result.get("errors"):
+            st.sidebar.warning("\n".join(result["errors"][:5]))
 
     source_filter = st.sidebar.selectbox(
         "Source",
