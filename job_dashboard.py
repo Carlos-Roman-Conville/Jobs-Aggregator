@@ -53,6 +53,17 @@ def _parse_summary(raw: Any) -> Dict[str, Any]:
     return {}
 
 
+def _fit_score_from_row(row: Dict[str, Any], summary: Dict[str, Any]) -> Optional[float]:
+    score = row.get("fit_score")
+    if score is not None:
+        return float(score)
+    for key in ("fit_score_blended", "fit_score_raw", "fit_score_0_1"):
+        val = summary.get(key)
+        if val is not None:
+            return float(val)
+    return None
+
+
 def _fit_color(score: float) -> str:
     if score >= 0.7:
         return "🟢"
@@ -61,11 +72,13 @@ def _fit_color(score: float) -> str:
     return "🔴"
 
 
-def _verdict_badge(verdict: str) -> str:
+def _verdict_badge(verdict: str, fit_score: Optional[float] = None) -> str:
     v = (verdict or "").lower()
-    if v == "strong_match":
+    if v == "strong_match" or (v == "maybe" and fit_score is not None and fit_score >= 0.7):
         return "✅ Strong Match"
     if v == "maybe":
+        if fit_score is not None and fit_score >= 0.4:
+            return "🟡 Possible Fit"
         return "🟡 Maybe"
     return "❌ Pass"
 
@@ -178,17 +191,15 @@ def _render_job_card(row: Dict[str, Any]):
     company = row.get("company_name") or summary.get("company") or "Unknown"
     location = row.get("location") or summary.get("location") or ""
     source = (row.get("source") or "").upper()
-    fit_score = summary.get("fit_score_0_1")
+    fit_score = _fit_score_from_row(row, summary)
     verdict = summary.get("verdict", "")
     key_reqs = summary.get("key_requirements") or []
     why_match = summary.get("why_match") or summary.get("headline") or ""
     salary = row.get("salary_text") or summary.get("salary") or ""
     job_url = row.get("job_url") or row.get("apply_url") or ""
     list_rank = row.get("list_rank")
-    status = row.get("status") or ""
 
     with st.container():
-        # Header row
         header_cols = st.columns([4, 1, 1])
         with header_cols[0]:
             link = f"[{title}]({job_url})" if job_url else title
@@ -198,9 +209,9 @@ def _render_job_card(row: Dict[str, Any]):
             if fit_score is not None:
                 st.metric("Fit Score", f"{_fit_color(fit_score)} {fit_score:.0%}")
             if list_rank is not None:
-                st.caption(f"Rank: {list_rank:.1f}")
+                st.caption(f"Rank: {list_rank:.2f}")
         with header_cols[2]:
-            st.markdown(f"**{_verdict_badge(verdict)}**")
+            st.markdown(f"**{_verdict_badge(verdict, fit_score)}**")
             if salary:
                 st.caption(f"💰 {salary}")
 
