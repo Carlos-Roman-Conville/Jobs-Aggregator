@@ -514,6 +514,57 @@
   .capstone .inline-list li { color: var(--capstone-muted); }
   .capstone .inline-list li::before { background: rgba(212, 169, 74, 0.35); }
 
+  /* --- Appendix --- */
+  .appendix-rule {
+    border: none;
+    border-top: 2px solid var(--accent-mid);
+    margin: 0 0 2.25rem 0;
+  }
+
+  .appendix-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .protocol-list {
+    list-style: none;
+    counter-reset: protocol;
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 0.5rem;
+  }
+
+  .protocol-list li {
+    counter-increment: protocol;
+    position: relative;
+    padding-left: 2.4rem;
+    font-size: 0.93rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .protocol-list li::before {
+    content: counter(protocol);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.7rem;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-radius: 3px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .protocol-list strong { color: var(--text-primary); font-weight: 600; }
+
   /* --- Footer --- */
   .page-footer {
     padding-top: 2rem;
@@ -568,6 +619,7 @@
       <li><a href="#play"><span class="toc-num">9.</span> Play, Teasing &amp; the Roast</a></li>
       <li><a href="#invisible"><span class="toc-num">10.</span> The Invisible Audience</a></li>
       <li class="toc-capstone"><a href="#exit"><span class="toc-num">+</span> The Exit &mdash; The Peak-End Rule</a></li>
+      <li class="toc-capstone"><a href="#solo-anchor"><span class="toc-num">A.</span> Field Appendix &mdash; The Solo Anchor</a></li>
     </ol>
   </nav>
 
@@ -1094,9 +1146,124 @@
     </div>
   </section>
 
+  <!-- Field Appendix -->
+  <hr class="appendix-rule">
+
+  <section class="entry-section" id="solo-anchor">
+    <div class="appendix-eyebrow">Field Appendix</div>
+    <div class="entry-header">
+      <h2 class="entry-name">The Solo Anchor</h2>
+      <div class="entry-tagline">Standing alone in a bar, listening, and interjecting when something is worth it &mdash; refined.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Why This Works Already</div>
+      <p>Holding a position alone for a long stretch, without visible restlessness, is one of the strongest costly signals available in a bar. Nearly everyone in the room needs a reason to be standing where they are &mdash; a group, a conversation, a destination. Needing none is legible from across the room, and it runs four mechanisms at once:</p>
+      <ul class="inline-list">
+        <li><strong>Occupying space</strong> &mdash; low motion rate, settled weight, no threat-monitoring behavior</li>
+        <li><strong>Non-reactivity</strong> &mdash; a group leaves and your face doesn't change, which prices the departure at zero</li>
+        <li><strong>Attention as currency</strong> &mdash; you're listening rather than broadcasting, and you engage selectively</li>
+        <li><strong>The invisible audience</strong> &mdash; standing unexplained only works if you've stopped correcting for an imagined audience, which you have</li>
+      </ul>
+      <p>The approach is sound. What follows is not a redesign &mdash; it's three leaks and a mechanic.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Leak 1 &mdash; The Phone</div>
+      <p>This is the expensive one, because it inverts the exact signal the rest of the method generates. Standing alone doing nothing says <em>I am comfortable being unexplained.</em> Standing alone on a phone says <em>I have somewhere to hide.</em> The room reads the second one instantly and files it under nowhere-to-be.</p>
+      <p>It also destroys the interjection. A stranger who has been quietly present and then speaks is joining a conversation. A stranger who has been on a screen and then speaks was <strong>listening the whole time and pretending not to</strong> &mdash; the phone is what converts attentive into surveilling. And it costs you the read: you can't catch the thread you want to enter while looking down.</p>
+      <p>The rule isn't never. It's <strong>purposeful and brief</strong>: pick it up to do a specific thing, do it, put it away. Never as a default posture, never while a group is within earshot, and never in the ninety seconds on either side of an interjection.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Leak 2 &mdash; No Anchor</div>
+      <p>Stillness needs a legible reason for being where it is. Standing in open floor beside groups with no anchor is the thin line between <em>relaxed</em> and <em>lurking</em> &mdash; and it's the version that gets read wrong by people who never speak to you.</p>
+      <p>Anchor to something that explains your position without you having to: the bar rail with a drink in front of you, a ledge or high-top you're leaning on, a sightline to a screen. Same stillness, same silence, same duration &mdash; but the position now justifies itself. The bar rail is the strongest of these, because everyone standing at a bar has an obvious reason to be there and turning to the person beside you is the most normal thing in the room.</p>
+      <p>Second-order benefit: an anchored position generates <strong>adjacency</strong> instead of proximity. People come to the bar and stand next to you by default. That's a conversation that starts without either of you having crossed a room.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Leak 3 &mdash; Frozen vs. Settled</div>
+      <p>Cutting head movement is the right instinct pushed one notch too far. The goal is a <strong>low motion rate</strong>, not zero motion. Zero reads as tense, braced, or deliberately performing calm &mdash; the brittle failure mode from entry five.</p>
+      <p>Settled stillness still contains movement; it's just unhurried and externally caused. You look over when something's loud. You react to what you hear &mdash; a real half-smile at a funny line, not a held blank face. Your body turns fully rather than your eyes flicking. The distinction the room actually reads is not <em>how much</em> you move but <em>what causes it</em>: motion driven by the environment reads as relaxed, motion driven by your own nerves reads as anxious.</p>
+    </div>
+
+    <div class="tells">
+      <div class="tells-col is-good">
+        <div class="tells-head">Settled</div>
+        <ul>
+          <li>Anchored at a rail or ledge</li>
+          <li>Hands still, drink held low</li>
+          <li>Reacts to the room, not to itself</li>
+          <li>Whole-body turns, unhurried</li>
+        </ul>
+      </div>
+      <div class="tells-col is-bad">
+        <div class="tells-head">Lurking</div>
+        <ul>
+          <li>Free-floating in open space</li>
+          <li>Phone as resting posture</li>
+          <li>Held blank face, no reactions</li>
+          <li>Eyes tracking, body frozen</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Reading the Group Before You Speak</div>
+      <p>Adam Kendon's work on <strong>F-formations</strong> describes how people in conversation arrange themselves to maintain a shared space between them &mdash; and the shape of that arrangement is a reliable, pre-verbal signal about whether a newcomer is welcome. You can read it from where you're standing, before committing to anything.</p>
+      <ul class="inline-list">
+        <li><strong>Open</strong> &mdash; a horseshoe or loose arc with a visible gap, bodies angled slightly outward, someone glancing around the room mid-conversation. The gap is not an accident. Groups that are open to arrivals leave one.</li>
+        <li><strong>Closed</strong> &mdash; a tight circle facing inward, no gap, lowered volume, two people angled squarely at each other. Do not enter. Volume is the fastest tell: a group talking loudly enough that you can hear them has already made the conversation semi-public.</li>
+        <li><strong>The hub</strong> &mdash; find who the group looks at after someone says something funny. That's the status center. Interject toward them and the group follows their read of you; interject toward the periphery and you're at the mercy of whoever's least secure.</li>
+        <li><strong>Topic class</strong> &mdash; some subjects are public property (the game, the bartender, a shared observation about the room, an argument about a fact) and some are not (anyone's job, relationship, or plans). Interject only into the first kind. That's usually what your instinct is already picking &mdash; the thing you can genuinely add to.</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Interject Mechanic</div>
+      <p>Interjecting cold is the part with the most technique in it, and the whole thing is in the first three seconds. The mistake almost everyone makes is entering with a full opinion &mdash; a stranger's paragraph arriving unannounced. Enter with something short they can answer, then let them decide the size of the opening.</p>
+      <ul class="inline-list">
+        <li><strong>Enter on a laugh or a beat, never mid-sentence</strong> &mdash; the natural gap after a punchline is an invitation; a cut-in mid-thought is a dominance move you don't want to be making from outside the group.</li>
+        <li><strong>Address the speaker, not the circle</strong> &mdash; one person, direct, at conversational volume. Addressing the whole group is a bid for the floor before you've been granted standing.</li>
+        <li><strong>Keep it under a sentence</strong> &mdash; a question, a short correction, a flat one-liner. Short entries are cheap to reject, which is exactly why they get accepted.</li>
+        <li><strong>Don't explain that you were listening</strong> &mdash; no "sorry, I overheard you guys." Either say nothing about it or own it in three words. Apologizing for proximity announces that you think proximity needed an apology.</li>
+        <li><strong>Take the temperature once, then commit or release</strong> &mdash; if the answer comes back with a body turn toward you, you're in; keep going. If it comes back with a nod and a return to the circle, you're not; go quiet immediately and stay where you are. Do not push a second line into a closed door.</li>
+      </ul>
+      <p>The release is the highest-leverage habit here and you already have the hard half of it &mdash; you don't make a face. The other half is <strong>not leaving after a failed interjection</strong>. Walking off resets it into a rejection, for you and for anyone watching. Staying exactly where you are, unchanged, means nothing happened.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Cold interject from the anchor</div>
+        <p><span class="direction">[Group of three at the rail beside you. Open arc, one gap, loud enough to hear clearly. They're arguing about whether a bar across town has closed down. Natural pause after someone laughs.]</span></p>
+        <p><span class="speaker">You:</span> <span class="direction">[to the one who made the claim, not the group, same volume as them, no preamble]</span> "It hasn't closed. It moved."</p>
+        <p><span class="direction">[Read the return. Body turns toward you = in. Nod and re-close = out.]</span></p>
+        <p><span class="speaker">Them:</span> <span class="direction">[turning]</span> "Wait, seriously? Where?"</p>
+        <p><span class="speaker">You:</span> "Two blocks up, same owners. It's better now, which is annoying because I'd been telling people it got worse."</p>
+        <p><span class="direction">Six words to enter, a flat factual correction with no hedging and no apology for overhearing. The self-deprecating tag on the second line supplies warmth after the competence, in that order &mdash; correcting a stranger without it lands cold. If the return had been a nod, the correct move is silence and no movement: you stay at your rail, and nothing happened.</span></p>
+      </div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Loop</div>
+      <ol class="protocol-list">
+        <li><strong>Anchor on arrival.</strong> Bar rail or ledge, drink low, sightline to the room. Position first, before anything else.</li>
+        <li><strong>Phone away and stays away.</strong> Purposeful use only, never as posture, never with a group in earshot.</li>
+        <li><strong>Settle, don't freeze.</strong> Low motion rate, real reactions to what you hear, whole-body turns.</li>
+        <li><strong>Read formations, not just conversations.</strong> Open arc plus public topic plus audible volume equals interjectable. Anything else, keep listening.</li>
+        <li><strong>Enter short, at a beat, to one person.</strong> Under a sentence. No apology for overhearing.</li>
+        <li><strong>Commit or release on the first return.</strong> Body turn means keep going; anything else means go quiet and hold position.</li>
+        <li><strong>Never relocate after a miss.</strong> Staying put is what makes it a non-event.</li>
+        <li><strong>Leave from a peak.</strong> If the night produced one good exchange, that's the night. Go while it's still the last thing that happened.</li>
+      </ol>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="page-footer">
-    <p><strong>Sources.</strong> Henrich &amp; Gil-White (2001) and Cheng, Tracy et al. (2013) on dominance vs. prestige; Ambady &amp; Rosenthal (1993) on thin slices; Willis &amp; Todorov (2006) on 100ms trait inference; Ranehill et al. (2015) on the failed replication of power-posing's hormonal effects; Hatfield, Cacioppo &amp; Rapson on emotional contagion and Barsade (2002) on the ripple effect; Itzchakov &amp; Kluger on high-quality listening; Fiske, Cuddy &amp; Glick on the warmth-competence model; Keltner et al. (2001) on teasing and status; Gilovich, Medvec &amp; Savitsky (2000) on the spotlight effect and illusion of transparency; Kahneman &amp; Fredrickson on the peak-end rule.</p>
+    <p><strong>Sources.</strong> Henrich &amp; Gil-White (2001) and Cheng, Tracy et al. (2013) on dominance vs. prestige; Ambady &amp; Rosenthal (1993) on thin slices; Willis &amp; Todorov (2006) on 100ms trait inference; Ranehill et al. (2015) on the failed replication of power-posing's hormonal effects; Hatfield, Cacioppo &amp; Rapson on emotional contagion and Barsade (2002) on the ripple effect; Itzchakov &amp; Kluger on high-quality listening; Fiske, Cuddy &amp; Glick on the warmth-competence model; Keltner et al. (2001) on teasing and status; Gilovich, Medvec &amp; Savitsky (2000) on the spotlight effect and illusion of transparency; Kahneman &amp; Fredrickson on the peak-end rule; Kendon on F-formations and the spatial organization of conversation.</p>
     <p><strong>A note on use.</strong> These describe how groups already read people — they are diagnostic before they are tactical. Used to stop leaking low-status signals you didn't know you were sending, they work. Used as a performance aimed at a room, they read as exactly what they are. The techniques that survive contact are the ones that stop being techniques.</p>
     <p>Companion volume to the Cold Call series. Field guide, not gospel &mdash; test everything against your own reps.</p>
   </footer>
