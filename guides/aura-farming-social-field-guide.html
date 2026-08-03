@@ -1,0 +1,1325 @@
+<title>The Aura Playbook — Status &amp; Presence in Social Scenarios</title>
+<style>
+  /* --- Tokens --- */
+  :root {
+    --ground: #f5f2eb;
+    --ground-alt: #ece7dc;
+    --surface: #ffffff;
+    --text-primary: #2b2622;
+    --text-secondary: #5e564d;
+    --text-muted: #8a8178;
+    --accent: #b8892e;
+    --accent-dim: rgba(184, 137, 46, 0.12);
+    --accent-mid: rgba(184, 137, 46, 0.25);
+    --secondary: #5a7a8a;
+    --secondary-dim: rgba(90, 122, 138, 0.10);
+    --script-bg: #faf8f4;
+    --script-border: #b8892e;
+    --divider: rgba(43, 38, 34, 0.10);
+    --entry-num: rgba(43, 38, 34, 0.06);
+    --tag-bg: rgba(184, 137, 46, 0.10);
+    --tag-text: #8a6a1a;
+    --good-bg: rgba(90, 122, 138, 0.08);
+    --good-text: #3f5f6e;
+    --bad-bg: rgba(43, 38, 34, 0.04);
+    --bad-text: #8a8178;
+    --capstone-bg: #2b2622;
+    --capstone-text: #f5f2eb;
+    --capstone-accent: #d4a94a;
+    --capstone-muted: #a09888;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #1c1f26;
+      --ground-alt: #24272f;
+      --surface: #2a2d36;
+      --text-primary: #e5e0d5;
+      --text-secondary: #a9a196;
+      --text-muted: #706a62;
+      --accent: #d4a94a;
+      --accent-dim: rgba(212, 169, 74, 0.10);
+      --accent-mid: rgba(212, 169, 74, 0.20);
+      --secondary: #7aacbe;
+      --secondary-dim: rgba(122, 172, 190, 0.10);
+      --script-bg: #22252c;
+      --script-border: #d4a94a;
+      --divider: rgba(229, 224, 213, 0.08);
+      --entry-num: rgba(229, 224, 213, 0.04);
+      --tag-bg: rgba(212, 169, 74, 0.12);
+      --tag-text: #d4a94a;
+      --good-bg: rgba(122, 172, 190, 0.10);
+      --good-text: #9cc4d4;
+      --bad-bg: rgba(229, 224, 213, 0.04);
+      --bad-text: #857d73;
+      --capstone-bg: #14161a;
+      --capstone-text: #e5e0d5;
+      --capstone-accent: #d4a94a;
+      --capstone-muted: #706a62;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #1c1f26;
+    --ground-alt: #24272f;
+    --surface: #2a2d36;
+    --text-primary: #e5e0d5;
+    --text-secondary: #a9a196;
+    --text-muted: #706a62;
+    --accent: #d4a94a;
+    --accent-dim: rgba(212, 169, 74, 0.10);
+    --accent-mid: rgba(212, 169, 74, 0.20);
+    --secondary: #7aacbe;
+    --secondary-dim: rgba(122, 172, 190, 0.10);
+    --script-bg: #22252c;
+    --script-border: #d4a94a;
+    --divider: rgba(229, 224, 213, 0.08);
+    --entry-num: rgba(229, 224, 213, 0.04);
+    --tag-bg: rgba(212, 169, 74, 0.12);
+    --tag-text: #d4a94a;
+    --good-bg: rgba(122, 172, 190, 0.10);
+    --good-text: #9cc4d4;
+    --bad-bg: rgba(229, 224, 213, 0.04);
+    --bad-text: #857d73;
+    --capstone-bg: #14161a;
+    --capstone-text: #e5e0d5;
+    --capstone-accent: #d4a94a;
+    --capstone-muted: #706a62;
+  }
+
+  :root[data-theme="light"] {
+    --ground: #f5f2eb;
+    --ground-alt: #ece7dc;
+    --surface: #ffffff;
+    --text-primary: #2b2622;
+    --text-secondary: #5e564d;
+    --text-muted: #8a8178;
+    --accent: #b8892e;
+    --accent-dim: rgba(184, 137, 46, 0.12);
+    --accent-mid: rgba(184, 137, 46, 0.25);
+    --secondary: #5a7a8a;
+    --secondary-dim: rgba(90, 122, 138, 0.10);
+    --script-bg: #faf8f4;
+    --script-border: #b8892e;
+    --divider: rgba(43, 38, 34, 0.10);
+    --entry-num: rgba(43, 38, 34, 0.06);
+    --tag-bg: rgba(184, 137, 46, 0.10);
+    --tag-text: #8a6a1a;
+    --good-bg: rgba(90, 122, 138, 0.08);
+    --good-text: #3f5f6e;
+    --bad-bg: rgba(43, 38, 34, 0.04);
+    --bad-text: #8a8178;
+    --capstone-bg: #2b2622;
+    --capstone-text: #f5f2eb;
+    --capstone-accent: #d4a94a;
+    --capstone-muted: #a09888;
+  }
+
+  /* --- Base --- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--ground);
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- Layout --- */
+  .page-container {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  @media (max-width: 600px) {
+    .page-container { padding: 2rem 1rem 3rem; }
+  }
+
+  /* --- Header --- */
+  .page-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .page-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .page-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text-primary);
+    text-wrap: balance;
+    margin-bottom: 1rem;
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* --- Preface --- */
+  .preface {
+    border-left: 3px solid var(--accent-mid);
+    padding: 0.2rem 0 0.2rem 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .preface p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  .preface p + p { margin-top: 0.6rem; }
+
+  .preface strong { color: var(--text-primary); font-weight: 600; }
+
+  /* --- TOC --- */
+  .toc {
+    background: var(--ground-alt);
+    border-radius: 6px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .toc-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .toc-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem 2rem;
+  }
+
+  @media (max-width: 550px) {
+    .toc-list { grid-template-columns: 1fr; }
+  }
+
+  .toc-list li {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .toc-list a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .toc-list a:hover,
+  .toc-list a:focus-visible {
+    color: var(--accent);
+  }
+
+  .toc-list .toc-num {
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    margin-right: 0.35em;
+    font-size: 0.82em;
+  }
+
+  .toc-capstone {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--divider);
+    grid-column: 1 / -1;
+  }
+
+  /* --- Entry Section --- */
+  .entry-section {
+    margin-bottom: 3.5rem;
+    position: relative;
+  }
+
+  .entry-section:last-of-type {
+    margin-bottom: 4rem;
+  }
+
+  .entry-num {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 5.5rem;
+    font-weight: 700;
+    color: var(--entry-num);
+    line-height: 1;
+    position: absolute;
+    top: -0.8rem;
+    left: -0.3rem;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .entry-header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .entry-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-primary);
+    text-wrap: balance;
+    margin-bottom: 0.3rem;
+  }
+
+  .entry-tagline {
+    font-size: 0.92rem;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  /* --- Subsections --- */
+  .sub-label {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    padding: 0.2em 0.6em;
+    border-radius: 3px;
+    margin-bottom: 0.6rem;
+  }
+
+  .sub-block {
+    margin-bottom: 1.4rem;
+  }
+
+  .sub-block p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.75;
+  }
+
+  .sub-block p + p {
+    margin-top: 0.6rem;
+  }
+
+  .sub-block strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  /* --- Script Block --- */
+  .script-block {
+    background: var(--script-bg);
+    border-left: 3px solid var(--script-border);
+    border-radius: 0 5px 5px 0;
+    padding: 1.15rem 1.35rem;
+    margin-top: 0.5rem;
+  }
+
+  .script-block .script-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .script-block p {
+    font-size: 0.92rem;
+    color: var(--text-primary);
+    line-height: 1.7;
+  }
+
+  .script-block p + p {
+    margin-top: 0.65rem;
+  }
+
+  .script-block .speaker {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .script-block .direction {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.88em;
+  }
+
+  /* --- Tells grid --- */
+  .tells {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 550px) {
+    .tells { grid-template-columns: 1fr; }
+  }
+
+  .tells-col {
+    border-radius: 5px;
+    padding: 0.9rem 1.05rem;
+  }
+
+  .tells-col.is-good { background: var(--good-bg); }
+  .tells-col.is-bad { background: var(--bad-bg); }
+
+  .tells-head {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .is-good .tells-head { color: var(--good-text); }
+  .is-bad .tells-head { color: var(--bad-text); }
+
+  .tells-col ul { list-style: none; }
+
+  .tells-col li {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    padding-left: 0.95em;
+    position: relative;
+  }
+
+  .tells-col li + li { margin-top: 0.3rem; }
+
+  .tells-col li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+  }
+
+  .is-good li::before { background: var(--secondary); }
+  .is-bad li::before { background: var(--text-muted); }
+
+  /* --- Stat callout --- */
+  .stat-callout {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: 0.8rem 0;
+    padding: 0.65rem 0;
+  }
+
+  .stat-number {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  /* --- Section divider --- */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--divider);
+    margin: 0 0 3.5rem 0;
+  }
+
+  /* --- Capstone --- */
+  .capstone {
+    background: var(--capstone-bg);
+    color: var(--capstone-text);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .capstone .entry-name { color: var(--capstone-text); }
+  .capstone .entry-tagline { color: var(--capstone-accent); }
+
+  .capstone .sub-label {
+    background: rgba(212, 169, 74, 0.15);
+    color: var(--capstone-accent);
+  }
+
+  .capstone .sub-block p { color: var(--capstone-muted); }
+  .capstone .sub-block strong { color: var(--capstone-text); }
+
+  .capstone .script-block {
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: var(--capstone-accent);
+  }
+
+  .capstone .script-block p { color: var(--capstone-text); }
+  .capstone .script-block .speaker { color: var(--capstone-accent); }
+  .capstone .script-block .direction { color: var(--capstone-muted); }
+
+  .capstone .stat-number { color: var(--capstone-accent); }
+  .capstone .stat-desc { color: var(--capstone-muted); }
+
+  /* --- Inline list --- */
+  .inline-list {
+    list-style: none;
+    margin: 0.6rem 0;
+  }
+
+  .inline-list li {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    padding-left: 1.2em;
+    position: relative;
+  }
+
+  .inline-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent-mid);
+  }
+
+  .capstone .inline-list li { color: var(--capstone-muted); }
+  .capstone .inline-list li::before { background: rgba(212, 169, 74, 0.35); }
+
+  /* --- Appendix --- */
+  .appendix-rule {
+    border: none;
+    border-top: 2px solid var(--accent-mid);
+    margin: 0 0 2.25rem 0;
+  }
+
+  .appendix-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  .protocol-list {
+    list-style: none;
+    counter-reset: protocol;
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 0.5rem;
+  }
+
+  .protocol-list li {
+    counter-increment: protocol;
+    position: relative;
+    padding-left: 2.4rem;
+    font-size: 0.93rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .protocol-list li::before {
+    content: counter(protocol);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.7rem;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-radius: 3px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .protocol-list strong { color: var(--text-primary); font-weight: 600; }
+
+  /* --- Footer --- */
+  .page-footer {
+    padding-top: 2rem;
+    border-top: 1px solid var(--divider);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  .page-footer p + p { margin-top: 0.6rem; }
+
+  .page-footer strong { color: var(--text-secondary); font-weight: 600; }
+
+  /* --- Utility --- */
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<div class="page-container">
+
+  <!-- Header -->
+  <header class="page-header">
+    <div class="page-eyebrow">Social Psychology Field Guide</div>
+    <h1 class="page-title">The Aura Playbook</h1>
+    <p class="page-subtitle">Ten mechanisms of social status and presence, plus one exit principle — applied to parties, group conversations, work socials, and rooms where nobody owes you attention. Each entry: the psychology, the play, and the lines that carry it.</p>
+  </header>
+
+  <div class="preface">
+    <p><strong>What "aura" actually is.</strong> Strip the slang and you get a measurable thing: the amount of unforced attention and deference a person draws in a group. It is not a personality trait you either have or don't. It is a set of signals — timing, attention, posture, reaction speed, emotional tone — that groups read automatically and score in seconds.</p>
+    <p><strong>The one rule that governs all ten.</strong> Every mechanism here dies the moment it looks effortful. Status behavior performed <em>at</em> a room reads as trying, and trying is the single loudest low-status signal there is. Run these until they're boring to you. The goal is not to seem calm — it is to be sufficiently uninvested that calm is what's left.</p>
+  </div>
+
+  <!-- TOC -->
+  <nav class="toc">
+    <div class="toc-label">Contents</div>
+    <ol class="toc-list">
+      <li><a href="#two-ladders"><span class="toc-num">1.</span> The Two Ladders</a></li>
+      <li><a href="#thin-slice"><span class="toc-num">2.</span> The Thin Slice</a></li>
+      <li><a href="#space"><span class="toc-num">3.</span> Occupying Space</a></li>
+      <li><a href="#tempo"><span class="toc-num">4.</span> Tempo &amp; the Pause</a></li>
+      <li><a href="#nonreactivity"><span class="toc-num">5.</span> Non-Reactivity</a></li>
+      <li><a href="#weather"><span class="toc-num">6.</span> Setting the Weather</a></li>
+      <li><a href="#attention"><span class="toc-num">7.</span> Attention as Currency</a></li>
+      <li><a href="#warmth"><span class="toc-num">8.</span> Warmth &times; Competence</a></li>
+      <li><a href="#play"><span class="toc-num">9.</span> Play, Teasing &amp; the Roast</a></li>
+      <li><a href="#invisible"><span class="toc-num">10.</span> The Invisible Audience</a></li>
+      <li class="toc-capstone"><a href="#exit"><span class="toc-num">+</span> The Exit &mdash; The Peak-End Rule</a></li>
+      <li class="toc-capstone"><a href="#solo-anchor"><span class="toc-num">A.</span> Field Appendix &mdash; The Solo Anchor</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1 -->
+  <section class="entry-section" id="two-ladders">
+    <div class="entry-num">1</div>
+    <div class="entry-header">
+      <h2 class="entry-name">The Two Ladders</h2>
+      <div class="entry-tagline">There are two routes to the top of a group, and only one of them is aura.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>Anthropologists Henrich and Gil-White identified two distinct paths to social rank in human groups: <strong>dominance</strong> (influence taken through intimidation, volume, and control of resources) and <strong>prestige</strong> (influence freely granted because others want proximity to you). Cheng and Tracy's later work confirmed both reliably produce influence — but they produce completely different downstream behavior in the group.</p>
+      <p>Dominance gets compliance while you're in the room. Prestige gets imitation when you leave it. People copy the posture, the slang, the opinions of prestigious individuals, and they do it voluntarily. That copying — not the compliance — is what people are describing when they say someone has aura.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <p>Nearly every instinct that feels like "gaining status" in the moment is actually a dominance move, and dominance moves in a casual social setting read as insecurity. The diagnostic is simple: <strong>dominance takes, prestige is given</strong>. If you had to grab it, it wasn't yours.</p>
+      <ul class="inline-list">
+        <li><strong>Stop competing for the floor</strong> &mdash; Talking over someone is a dominance bid. Waiting, then landing one line the group repeats, is a prestige bid. The second one wins the night.</li>
+        <li><strong>Let competence leak, never announce it</strong> &mdash; Prestige is inferred from evidence, not from claims. Someone else mentioning what you do is worth ten times you mentioning it.</li>
+        <li><strong>Elevate someone visibly</strong> &mdash; Only people with status to spare can hand it out. Publicly crediting someone is a signal you have surplus.</li>
+        <li><strong>Never punch down</strong> &mdash; Targeting the lowest-status person in the group is the clearest evidence you feel threatened by the room.</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Converting a dominance bid into a prestige move</div>
+        <p><span class="direction">[Someone cuts you off mid-story. The dominance instinct is to talk louder and reclaim the floor. Don't.]</span></p>
+        <p><span class="speaker">You:</span> <span class="direction">[stop cleanly, no visible irritation, let them finish completely]</span> "No, that's better than where I was going. Finish that."</p>
+        <p><span class="direction">[Thirty seconds later, when their story lands:]</span></p>
+        <p><span class="speaker">You:</span> "Okay, the part about the parking garage is the part you should lead with next time. That's the whole story."</p>
+        <p><span class="direction">You just did three things: refused a status fight in public, gave attention away like you had extra, and positioned yourself as the person who judges what's good. The group registers all three. You never raised your voice once.</span></p>
+      </div>
+    </div>
+
+    <div class="tells">
+      <div class="tells-col is-good">
+        <div class="tells-head">Prestige</div>
+        <ul>
+          <li>Others quote you when you're not there</li>
+          <li>People check your reaction before laughing</li>
+          <li>You get invited, not just included</li>
+        </ul>
+      </div>
+      <div class="tells-col is-bad">
+        <div class="tells-head">Dominance</div>
+        <ul>
+          <li>You win arguments, lose invitations</li>
+          <li>Conversation resets when you walk off</li>
+          <li>Agreement arrives fast and shallow</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 2 -->
+  <section class="entry-section" id="thin-slice">
+    <div class="entry-num">2</div>
+    <div class="entry-header">
+      <h2 class="entry-name">The Thin Slice</h2>
+      <div class="entry-tagline">The room decides about you before you finish crossing it.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>Ambady and Rosenthal showed that students rating <strong>30-second silent video clips</strong> of teachers they'd never met produced evaluations that closely matched ratings from students who'd sat through an entire semester. No audio. No content. Just movement, posture, and face.</p>
+      <p>Willis and Todorov pushed it further: a <strong>100-millisecond exposure</strong> to a face was enough to form judgments of trustworthiness, competence, and aggressiveness. Longer looks didn't change the judgment — they only increased confidence in it. First impressions aren't a rough draft the room revises later. They're the verdict, and everything after gets read as evidence for it.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <p>Because the thin slice is nonverbal and pre-conversational, your opening line is nearly irrelevant. What gets scored is <strong>the approach</strong> — the ten seconds before anyone speaks.</p>
+      <ul class="inline-list">
+        <li><strong>Enter slow, scan first</strong> &mdash; Walking in and immediately sweeping the room at an unhurried pace signals you expect to belong there. Beelining for the one person you know signals the opposite.</li>
+        <li><strong>Arrive fully, then talk</strong> &mdash; Stop moving, settle your weight, then open your mouth. Talking while still approaching is the universal tell of someone auditioning for entry.</li>
+        <li><strong>Break the eye contact sideways, not down</strong> &mdash; Looking down to break contact reads as submission. Looking horizontally away reads as thinking.</li>
+        <li><strong>Fix the fixables</strong> &mdash; Fit, grooming, and posture load the halo effect before you've said anything. This is the cheapest point on the board and most people leave it unclaimed.</li>
+      </ul>
+      <p>The corollary is liberating: if the verdict lands in the first ten seconds, then <strong>the content of your first sentence carries almost no weight</strong>. "Hey, what's going on over here" delivered from a settled stance beats a clever line delivered mid-stride, every time.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Joining a group of strangers mid-conversation</div>
+        <p><span class="direction">[Approach at normal walking speed. Stop at the edge of the circle — not behind someone's shoulder. Do not speak yet. Listen for one full exchange. Let them clock you standing there comfortably, saying nothing.]</span></p>
+        <p><span class="direction">[React genuinely to whatever they just said — a laugh, a raised eyebrow. Now you're in the conversation before you've joined it.]</span></p>
+        <p><span class="speaker">You:</span> "Sorry, I've been eavesdropping. Who's the one who actually did it?"</p>
+        <p><span class="direction">The silence before the line is the whole move. Standing in a group of strangers without speaking, without checking your phone, without a nervous smile, is a costly signal — it broadcasts that you're comfortable being unexplained. The line just gives them something to answer.</span></p>
+      </div>
+    </div>
+
+    <div class="stat-callout">
+      <div class="stat-number">100ms</div>
+      <div class="stat-desc">Exposure time sufficient to form stable judgments of trustworthiness and competence from a face; longer exposure increased confidence, not accuracy (Willis &amp; Todorov, 2006)</div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 3 -->
+  <section class="entry-section" id="space">
+    <div class="entry-num">3</div>
+    <div class="entry-header">
+      <h2 class="entry-name">Occupying Space</h2>
+      <div class="entry-tagline">Status is measured in square footage and stillness.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>Expansive posture — open chest, relaxed limbs, head level — is read by observers as high status with remarkable consistency across cultures. Constrictive posture — arms crossed, shoulders forward, feet tucked, hands occupied — is read as low status or under threat.</p>
+      <p>An honest caveat, because it matters: the popular "power posing" claim that holding these positions changes your <strong>hormones</strong> failed to replicate (Ranehill et al., 2015). Do not expect a testosterone spike from standing in a bathroom stall. What <em>does</em> hold up robustly is the <strong>observer effect</strong> — the group reads expansiveness as confidence regardless of what you feel. You're not manipulating your own chemistry. You're managing a signal other people are already reading.</p>
+      <p>Movement rate matters as much as posture. Rapid, frequent, self-directed motion — adjusting your sleeve, touching your face, shifting weight, checking your phone — reads as threat-monitoring. Stillness reads as safety.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <ul class="inline-list">
+        <li><strong>Occupy the chair</strong> &mdash; Sit back into it, not perched on the front edge. Perching says "I might have to leave."</li>
+        <li><strong>Hands visible and idle</strong> &mdash; Not in pockets, not gripping a drink at chest height like a shield. A drink held low at your side is a completely different signal than the same drink held across your sternum.</li>
+        <li><strong>Turn with your whole body</strong> &mdash; When someone says your name, turning just your head is a partial commitment. Turning your torso says you're not monitoring anything else.</li>
+        <li><strong>Cut your motion rate in half</strong> &mdash; This is the single highest-leverage physical change available to most people. Fewer adjustments, slower gestures, longer holds.</li>
+        <li><strong>Claim the good position</strong> &mdash; The spot with sightlines to the room and your back to a wall. High-status people take it without discussion; everyone else orbits.</li>
+      </ul>
+    </div>
+
+    <div class="tells">
+      <div class="tells-col is-good">
+        <div class="tells-head">Reads as presence</div>
+        <ul>
+          <li>Weight settled on both feet</li>
+          <li>Slow full-body turns</li>
+          <li>Hands still and open</li>
+          <li>Comfortable with gaps between words</li>
+        </ul>
+      </div>
+      <div class="tells-col is-bad">
+        <div class="tells-head">Reads as threat-monitoring</div>
+        <ul>
+          <li>Rocking, shifting, bouncing</li>
+          <li>Drink held at chest height</li>
+          <li>Face-touching, sleeve-adjusting</li>
+          <li>Phone as social airbag</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Being introduced to someone senior or intimidating</div>
+        <p><span class="direction">[The instinct is to lean in, shrink slightly, and speed up. Do the opposite — and do it slowly enough that it registers as deliberate.]</span></p>
+        <p><span class="direction">[Turn your whole body. Full stop of motion. One beat of eye contact before speaking.]</span></p>
+        <p><span class="speaker">You:</span> "Marcus. Good &mdash; I've been wanting to meet you." <span class="direction">[pause]</span> "Sarah's version of what you do made no sense to me. What is it actually?"</p>
+        <p><span class="direction">Note what's absent: no rushed pleasantries, no credential-dropping, no upward inflection. The mild admission of ignorance is a status move, not a concession — only someone unworried about looking uninformed asks a question that plainly.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 4 -->
+  <section class="entry-section" id="tempo">
+    <div class="entry-num">4</div>
+    <div class="entry-header">
+      <h2 class="entry-name">Tempo &amp; the Pause</h2>
+      <div class="entry-tagline">Whoever is willing to hold silence the longest controls the conversation.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>Speech rate and hesitation patterns are among the strongest vocal predictors of perceived status. Fast, unbroken, filler-heavy speech signals a speaker who expects to be interrupted and is racing to finish. Slow speech with clean pauses signals a speaker who assumes the floor is theirs until they release it.</p>
+      <p>The mechanism is simple: <strong>filling silence is a service performed for a group whose approval you need</strong>. When you stop performing it, the room reads the surplus. Research on vocal characteristics consistently finds that lower pitch, moderate volume, and deliberate pacing carry more perceived authority than volume alone.</p>
+      <p>There is also the trailing-off problem — uptalk, the rising terminal that turns a statement into a request for permission. "The place on Fifth is better?" invites correction. "The place on Fifth is better." ends the matter.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <ul class="inline-list">
+        <li><strong>Pause before answering, not during</strong> &mdash; A two-second beat before you speak reads as consideration. Pausing mid-sentence to search for a word reads as struggle. Front-load the silence.</li>
+        <li><strong>Replace filler with nothing</strong> &mdash; "Um," "like," "I mean," "sort of" are all sounds people make to keep the floor while thinking. Just think. The silence holds the floor better than the filler did.</li>
+        <li><strong>Land the last word down</strong> &mdash; Drop your pitch at the end of statements. This single habit changes how much of what you say gets challenged.</li>
+        <li><strong>Don't fill a lull</strong> &mdash; A silence in the group is a test of who needs it filled. The person who cracks first tells the room something. Let it sit; ten seconds of quiet costs you nothing.</li>
+        <li><strong>Cut qualifiers</strong> &mdash; "I might be wrong but," "this is probably dumb," "just my opinion." Every one is a pre-emptive apology for existing in the conversation.</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Getting put on the spot in front of a group</div>
+        <p><span class="speaker">Them:</span> "Wait, you'd know &mdash; is that actually true?"</p>
+        <p><span class="direction">[Everyone turns. The panic instinct is to start talking immediately and figure out the sentence while it's leaving your mouth. Instead: hold. Two full seconds. Look at the person who asked, not at the group.]</span></p>
+        <p><span class="speaker">You:</span> <span class="direction">[two-beat pause]</span> "Half true." <span class="direction">[pause]</span> "The part everyone gets wrong is the timeline."</p>
+        <p><span class="direction">Three things happened in four words. You didn't scramble. You made a definitive claim instead of hedging. And you opened a loop — "the part everyone gets wrong" — that the group now needs closed, which means you hold the floor for as long as you want it.</span></p>
+      </div>
+    </div>
+
+    <div class="stat-callout">
+      <div class="stat-number">2 sec</div>
+      <div class="stat-desc">The pause length that reads as deliberate consideration rather than hesitation — long enough that the room notices you chose it</div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 5 -->
+  <section class="entry-section" id="nonreactivity">
+    <div class="entry-num">5</div>
+    <div class="entry-header">
+      <h2 class="entry-name">Non-Reactivity</h2>
+      <div class="entry-tagline">Status is the capacity to not need the next thing that happens to go your way.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>Reactivity is a status readout. The speed and size of your response to a provocation tells the group exactly how much the provocation cost you — and therefore how much of your standing depends on the group's verdict. Someone who flinches, over-explains, or retaliates instantly has revealed that the stakes were real for them.</p>
+      <p>This is why the classic advice "don't let them see it bother you" is more than folk wisdom. In status contests, the visible cost of a hit <em>is</em> the hit. Absorb it without cost and the attempt fails retroactively — the group re-reads the aggressor as the one who tried something and missed.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <p>Non-reactivity is not stone-facing everything — that reads as brittle and humorless, which is its own tell. It's <strong>proportional response with a slight delay</strong>. Four common provocations and their handling:</p>
+      <ul class="inline-list">
+        <li><strong>The public jab</strong> &mdash; Don't defend, don't counterattack at equal force. Agree and amplify, then move on. Defending grants the accusation weight.</li>
+        <li><strong>The one-upper</strong> &mdash; Let them have it. Genuinely. "That's a better story than mine" ends the contest and makes them look like they were competing, which they were.</li>
+        <li><strong>The dismissal</strong> &mdash; Someone waves off your point. Don't repeat it louder. Say nothing, and reintroduce it later when it becomes obviously right. Being proven correct on a delay is worth more than winning the exchange.</li>
+        <li><strong>Being ignored</strong> &mdash; The lowest-status recovery is to say it again at higher volume. Just stop. Rejoin when the topic turns.</li>
+      </ul>
+      <p>The physical layer matters as much as the verbal: don't flinch, don't laugh nervously to smooth it over, don't glance around the group checking how it landed. <strong>Checking the room after a hit is the loudest tell there is.</strong></p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Absorbing a public jab</div>
+        <p><span class="speaker">Them:</span> "Dude, you spent your whole Saturday on <em>spreadsheets</em>?"</p>
+        <p><span class="direction">[Wrong move A: defensive — "It's actually a really complex system, it's not what you think." Wrong move B: counterattack — "At least I did something with my weekend." Both concede that the hit landed.]</span></p>
+        <p><span class="speaker">You:</span> <span class="direction">[unbothered, half-smile, no rush]</span> "Yeah. Whole Saturday. It was incredible."</p>
+        <p><span class="direction">[Beat. Then, without changing tone, redirect to anything:]</span></p>
+        <p><span class="speaker">You:</span> "Did you end up going to that thing on Sunday?"</p>
+        <p><span class="direction">Full agreement plus zero embarrassment leaves the jab with nowhere to go. There's no wound to press. The clean subject change — no pause for approval, no checking faces — confirms the whole exchange cost you nothing.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 6 -->
+  <section class="entry-section" id="weather">
+    <div class="entry-num">6</div>
+    <div class="entry-header">
+      <h2 class="entry-name">Setting the Weather</h2>
+      <div class="entry-tagline">Emotions spread through a group, and the group attributes the mood to whoever started it.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>Emotional contagion — documented extensively by Hatfield, Cacioppo, and Rapson — is the automatic tendency to catch the affect of people around us through mimicry of expression, posture, and vocal tone. It happens below conscious awareness and it moves <strong>down the status gradient</strong>: groups synchronize toward the emotional state of their highest-status member, not the average.</p>
+      <p>This creates a loop you can enter from either end. High status makes your mood contagious — but being the reliable source of a group's good state <em>generates</em> status. Barsade's "ripple effect" studies found that a single person's affect measurably shifted group mood and cooperation, and the group credited the resulting experience to the room, not to the source. Which means the source gets the association without ever appearing to try.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <p>The aura position is <strong>the person the group's mood follows</strong>, not the person with the best mood. Enthusiasm sprayed indiscriminately reads as needy. Weather-setting is about being the stable reference point when the group's state is unsettled.</p>
+      <ul class="inline-list">
+        <li><strong>Own the lull</strong> &mdash; Dead air after a joke dies, an awkward introduction, a story that flopped. The person who resolves it without visible effort takes the room. Name it lightly rather than papering over it: "Okay, that killed it. New topic."</li>
+        <li><strong>Be the calm in a spike</strong> &mdash; When something goes wrong — a spilled drink, a tense exchange, a plan collapsing — the group looks for someone whose state didn't change. That look is the transfer of status happening in real time.</li>
+        <li><strong>Raise slowly, never match desperately</strong> &mdash; Walking into a flat room at maximum energy doesn't lift it; it isolates you. Enter one notch above the room's level and let contagion do the rest.</li>
+        <li><strong>Refuse the complaint spiral</strong> &mdash; Groups sink into shared grievance easily. Declining to descend, without moralizing about it, marks you as the person operating from a different baseline.</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Rescuing a dead moment without looking like you're rescuing it</div>
+        <p><span class="direction">[Someone told a long story that landed flat. Four seconds of unbearable silence. Everyone is looking at their drink. The low-status move is to laugh too hard and too late.]</span></p>
+        <p><span class="speaker">You:</span> <span class="direction">[completely relaxed, mild amusement, addressed to the storyteller — not the group]</span> "That was a lot of build for that ending."</p>
+        <p><span class="direction">[Laugh. Then immediately, same breath, no gap:]</span></p>
+        <p><span class="speaker">You:</span> "Tell them the one about your neighbor instead. That one's actually insane."</p>
+        <p><span class="direction">You named the awkwardness instead of pretending it away — which requires being unbothered by it — then handed the storyteller a rescue instead of taking the floor yourself. The group's relief is now attached to you, and the person you saved knows it.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 7 -->
+  <section class="entry-section" id="attention">
+    <div class="entry-num">7</div>
+    <div class="entry-header">
+      <h2 class="entry-name">Attention as Currency</h2>
+      <div class="entry-tagline">Aura isn't how much attention you get. It's what happens when you give some.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>In any group, attention flows uphill — people watch the high-status members and monitor their reactions. This makes attention a currency with an exchange rate: <strong>attention from a high-status person is worth more than attention from a low-status one</strong>, and everyone in the room prices it automatically.</p>
+      <p>Two consequences follow. First, seeking attention spends status while receiving it accrues status — which is why the person working hardest to be noticed is reliably the one being noticed least favorably. Second, <strong>giving</strong> focused attention is a high-status act, not a submissive one. Research by Itzchakov and Kluger on high-quality listening found that the experience of being deeply listened to reduces defensiveness and increases the listener's perceived warmth <em>and</em> competence simultaneously — a combination almost nothing else achieves.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <p>Most people run attention backwards: they broadcast to the group and give scraps to individuals. Invert it.</p>
+      <ul class="inline-list">
+        <li><strong>Full attention, briefly</strong> &mdash; Total focus on one person for ninety seconds beats divided half-attention for twenty minutes. The contrast against everyone else's phone-checking is the entire effect.</li>
+        <li><strong>Don't scan while listening</strong> &mdash; Eyes flicking past someone's shoulder to check the room is the clearest possible statement that they are not the most interesting thing available.</li>
+        <li><strong>Ask the second question</strong> &mdash; Anyone can ask what you do. The status move is the follow-up that proves you processed the answer: "What made you switch?" People remember being asked a real question for months.</li>
+        <li><strong>Withhold without performing withholding</strong> &mdash; Don't give the room continuous reaction. If you laugh at everything and validate every comment, your approval carries no information. Reactions that are genuinely selective make the ones you give worth something.</li>
+        <li><strong>Notice who gets ignored</strong> &mdash; Turning to the quiet person and pulling them in costs you nothing and reads as unmistakable social surplus.</li>
+      </ul>
+      <p>One caution: this stops working the moment it becomes a technique. Calibrated approval means <em>having genuine standards</em>, not rationing praise strategically. People detect manufactured scarcity of warmth very quickly, and it reads as coldness — which is the failure mode of the next section.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">The second question</div>
+        <p><span class="speaker">Them:</span> "I'm in logistics, mostly freight brokerage."</p>
+        <p><span class="direction">[The default response is "oh nice, how long have you been doing that?" — a question that requests information nobody wants to give. Instead, go at the part they'd actually have an opinion about.]</span></p>
+        <p><span class="speaker">You:</span> "Is that a job where you're good at it because you're organized, or because you're good at talking people into things?"</p>
+        <p><span class="speaker">Them:</span> <span class="direction">[visibly engaged]</span> "Honestly? Neither. It's..."</p>
+        <p><span class="direction">The question asks about them rather than their resume, and it presents a frame they get to correct — which is far more engaging than an open prompt. You've also signaled that you think in categories, which is a competence cue delivered without a single claim about yourself.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 8 -->
+  <section class="entry-section" id="warmth">
+    <div class="entry-num">8</div>
+    <div class="entry-header">
+      <h2 class="entry-name">Warmth &times; Competence</h2>
+      <div class="entry-tagline">Cool without warm is just cold, and cold has no aura.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>Susan Fiske's Stereotype Content Model established that people evaluate others along two near-universal dimensions: <strong>warmth</strong> (are you friend or threat?) and <strong>competence</strong> (can you act on it?). Together they account for the large majority of variance in how we judge individuals and groups.</p>
+      <p>The four quadrants produce four completely different social outcomes. High warmth + low competence produces <em>pity</em> — liked, not respected, not consulted. Low warmth + high competence produces <em>envy</em> — respected, resented, and quietly excluded. Low + low produces contempt. Only <strong>high warmth + high competence produces admiration</strong>, and admiration is the technical term for what aura feels like from the outside.</p>
+      <p>Crucially, warmth is judged first and weighted more heavily. The room decides whether you're safe before it decides whether you're impressive, and a competence signal delivered before a warmth signal gets recoded as a threat display.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <p>Most people trying to farm aura optimize for competence exclusively — the detached, unimpressed, hard-to-reach posture. That lands you in the envy quadrant, which produces respect at a distance and no invitations. The fix is not less competence. It's <strong>warmth delivered first and unmistakably</strong>.</p>
+      <ul class="inline-list">
+        <li><strong>Warmth before edge</strong> &mdash; Establish that you like the person before you tease them. The identical joke reads as affection or as an attack depending entirely on which came first.</li>
+        <li><strong>Be specifically glad to see people</strong> &mdash; Not effusive; specific. "I was hoping you'd be here, I want to hear how the thing went" costs nothing and is remembered.</li>
+        <li><strong>Let competence arrive as a side effect</strong> &mdash; A precise observation, a decisive recommendation, knowing exactly where to go. Demonstrated, never stated.</li>
+        <li><strong>Warmth is not agreement</strong> &mdash; You can disagree flatly and remain warm; the signal is in tone and continued engagement, not in capitulation. Agreeing with everything is a competence loss with no warmth gain.</li>
+      </ul>
+    </div>
+
+    <div class="tells">
+      <div class="tells-col is-good">
+        <div class="tells-head">Admiration &mdash; warm + competent</div>
+        <ul>
+          <li>Decisive, and glad you're there</li>
+          <li>Disagrees without cooling</li>
+          <li>Remembers specifics about people</li>
+        </ul>
+      </div>
+      <div class="tells-col is-bad">
+        <div class="tells-head">Envy &mdash; cold + competent</div>
+        <ul>
+          <li>Unimpressed as a permanent setting</li>
+          <li>Corrects more than it contributes</li>
+          <li>Respected, never invited</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Disagreeing without going cold</div>
+        <p><span class="speaker">Them:</span> "The new place downtown is way better than Corrado's."</p>
+        <p><span class="direction">[Cold-competent version: "It's objectively not." Correct, unpleasant, envy quadrant. Instead, keep the warmth channel fully open while conceding nothing.]</span></p>
+        <p><span class="speaker">You:</span> <span class="direction">[amused, engaged, leaning in rather than back]</span> "That's completely wrong and I want to know how you got there."</p>
+        <p><span class="speaker">Them:</span> <span class="direction">[laughing]</span> "Okay, hear me out &mdash;"</p>
+        <p><span class="direction">The disagreement is total and undiluted. The tone says the conversation is fun and they're welcome in it. Warmth carried by delivery, competence carried by the refusal to hedge — both dimensions in one sentence.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 9 -->
+  <section class="entry-section" id="play">
+    <div class="entry-num">9</div>
+    <div class="entry-header">
+      <h2 class="entry-name">Play, Teasing &amp; the Roast</h2>
+      <div class="entry-tagline">Teasing is how groups negotiate rank without anyone admitting a negotiation is happening.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>Dacher Keltner's research on teasing frames it as a fundamentally ambiguous act: it carries a hostile message wrapped in play signals — exaggeration, a shift in voice, a smile — that mark it as not-serious. That ambiguity is the point. It lets groups establish rank and enforce norms while preserving the relationship.</p>
+      <p>The findings that matter here: <strong>high-status members tease more, and more freely</strong>. And the same tease that reads as affectionate between equals reads as humiliating when aimed downward at someone with much less standing. The play signals get less credible as the status gap widens — which is precisely why punching down fails.</p>
+      <p>Teasing that succeeds is a bonding act. It says: our relationship is secure enough to absorb this. Being teased by a group is a stronger inclusion signal than being complimented by one.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <ul class="inline-list">
+        <li><strong>Tease up or across, never down</strong> &mdash; The higher-status the target, the more the tease elevates you. The lower, the more it costs you.</li>
+        <li><strong>Target the invulnerable</strong> &mdash; Go after things people are secure about, or better, things they're proud of. Never real insecurities. The line isn't intensity; it's whether it touches something that actually hurts.</li>
+        <li><strong>Play signals must be loud</strong> &mdash; Exaggeration, a shift in tone, a held look. Deadpan teasing is high-risk and only works with a lot of established warmth behind it.</li>
+        <li><strong>Take a tease perfectly</strong> &mdash; Agree and exaggerate. "Yeah, and it gets worse." Never defend, never look hurt, never counterattack immediately — the immediate counter reveals it landed.</li>
+        <li><strong>Self-deprecate from strength only</strong> &mdash; Joking about a real weakness is confession; joking about something the group knows you're fine at is confidence. Same form, opposite signal.</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Taking a group roast</div>
+        <p><span class="speaker">Them:</span> "He's been talking about that trip for two years and hasn't booked anything."</p>
+        <p><span class="direction">[Defense — "I've been busy, it's actually complicated" — turns a bonding moment into a status loss. Instead: agree, then escalate past them.]</span></p>
+        <p><span class="speaker">You:</span> "Two years is generous. I've had the tab open since 2023. At this point the trip is more of a personality trait."</p>
+        <p><span class="direction">[Group laughs. You've now become the one telling the joke about yourself, which converts a hit into a contribution.]</span></p>
+        <p><span class="speaker">You:</span> <span class="direction">[to the person who started it, warm, no heat]</span> "Also this is coming from a man who has owned a guitar for nine years."</p>
+        <p><span class="direction">Absorb, amplify, then return across — not down. The counter lands only because you took the original one cleanly first. Returning fire before absorbing would have read as defensive.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- 10 -->
+  <section class="entry-section" id="invisible">
+    <div class="entry-num">10</div>
+    <div class="entry-header">
+      <h2 class="entry-name">The Invisible Audience</h2>
+      <div class="entry-tagline">Nobody is watching you as closely as you think, and they cannot see what you're feeling.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>Gilovich, Medvec, and Savitsky demonstrated the <strong>spotlight effect</strong> with a now-famous study: students made to wear an embarrassing Barry Manilow t-shirt into a room of peers estimated that roughly <strong>half</strong> the observers would notice. The actual figure was about <strong>23 percent</strong> — and observers routinely failed to notice much more dramatic things.</p>
+      <p>Its companion is the <strong>illusion of transparency</strong>: we dramatically overestimate how visible our internal states are. Speakers who felt intensely nervous were rated as only mildly nervous by audiences. Your racing heart, the thing you said wrong, the pause you thought was catastrophic — the room's resolution on your internal state is far lower than you believe, because everyone else is busy running their own spotlight effect.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <p>This is the section that makes the other nine possible. Almost all low-status behavior — the nervous laugh, the over-explanation, the pre-emptive apology — is a correction for an audience that isn't watching. Remove the imagined audience and the corrections stop.</p>
+      <ul class="inline-list">
+        <li><strong>Assume the failure was invisible</strong> &mdash; The awkward line you replayed for an hour was noticed by roughly one person for roughly two seconds. Acting embarrassed afterward is what actually makes it visible.</li>
+        <li><strong>Never explain a small misstep</strong> &mdash; Explanation converts a private event into a public one. The room hadn't registered it until you announced it.</li>
+        <li><strong>Feel nervous, act normal</strong> &mdash; You don't need to eliminate the anxiety, only decline to narrate it. It is much less legible from the outside than it is from where you're standing.</li>
+        <li><strong>Spend the surplus</strong> &mdash; If the cost of a social risk is mostly imaginary, then approaching the group, making the joke, and asking the direct question are all radically underpriced. Aura accumulates in the gap between the risk you feel and the risk that's real.</li>
+      </ul>
+    </div>
+
+    <div class="stat-callout">
+      <div class="stat-number">23%</div>
+      <div class="stat-desc">Observers who actually noticed the embarrassing shirt, against the wearers' estimate of roughly 50% (Gilovich, Medvec &amp; Savitsky, 2000)</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Recovering from a joke that died</div>
+        <p><span class="direction">[You made a joke. Nothing. Total silence. Internally this feels like a five-alarm event. Externally, about two people fully registered it.]</span></p>
+        <p><span class="direction">[Wrong: "Sorry, that was bad." "Wow, tough crowd." "Anyway —" delivered with a wince. All three convert an unnoticed moment into a documented one.]</span></p>
+        <p><span class="speaker">You:</span> <span class="direction">[no change in expression, no acknowledgment whatsoever, continue at the same tempo]</span> "&mdash; anyway, they ended up cancelling the whole thing two days later."</p>
+        <p><span class="direction">The room takes its cue on how bad that was entirely from you. Give it nothing to work with and the moment doesn't exist. This one habit — declining to flag your own small failures — probably outperforms every other technique in this guide.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Capstone -->
+  <section class="entry-section capstone" id="exit">
+    <div class="entry-header">
+      <h2 class="entry-name">The Exit &mdash; The Peak-End Rule</h2>
+      <div class="entry-tagline">You are not remembered for the evening. You are remembered for its best moment and its last one.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Psychology</div>
+      <p>Kahneman and Fredrickson's work on remembered experience found that people don't evaluate an episode by averaging it or by its duration. They evaluate it by the <strong>peak</strong> and the <strong>end</strong> — a phenomenon so strong that adding extra mildly-unpleasant time to a painful procedure made subjects remember it as <em>better</em>, because it ended on a lower-intensity note. Duration barely registers.</p>
+      <p>Applied socially: the four hours you were present are not what gets stored. What gets stored is your single best moment and the state of things when you left. Staying until the party thins out doesn't add to the memory — it overwrites a strong end with a flat one.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Play</div>
+      <ul class="inline-list">
+        <li><strong>Leave on an upswing, not a decline</strong> &mdash; The correct exit point is roughly twenty minutes before you want to go, while the energy is still high and you're still enjoying it. It will feel early. That feeling is the signal.</li>
+        <li><strong>Never announce a long goodbye</strong> &mdash; Circling the room extracting closure from each person is a status drain performed in public. Say goodbye to two or three people well and go.</li>
+        <li><strong>Leave one loop open</strong> &mdash; The Zeigarnik effect: unfinished business stays in memory more readily than concluded business. "I'll tell you the rest of that story next time" is a deliberate open loop, and it works.</li>
+        <li><strong>Be the one who leaves, not the one still there</strong> &mdash; Having somewhere to be is a costly signal you don't have to explain or prove.</li>
+        <li><strong>Engineer one peak</strong> &mdash; A single high point beats consistent pleasantness. One genuinely funny bit, one real conversation, one memorable thing done. That's the whole memory.</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">The exit</div>
+        <p><span class="direction">[The group is still laughing at something. This is precisely the moment — not the lull forty minutes later.]</span></p>
+        <p><span class="speaker">You:</span> <span class="direction">[standing, relaxed, no apology in the tone]</span> "Alright, I'm out."</p>
+        <p><span class="speaker">Them:</span> "What? It's early."</p>
+        <p><span class="speaker">You:</span> <span class="direction">[no explanation offered, no justification]</span> "I know." <span class="direction">[to one person, specifically]</span> "You still owe me the rest of the neighbor story. Next time."</p>
+        <p><span class="direction">[Leave within ninety seconds of saying it. Announcing a departure and then lingering for twenty minutes undoes the entire move.]</span></p>
+        <p><span class="direction">You left at a peak, offered no justification for your own choice, and handed one person a reason to want a next time. The evening's stored version of you is the version from three minutes ago.</span></p>
+      </div>
+    </div>
+
+    <div class="stat-callout">
+      <div class="stat-number">2</div>
+      <div class="stat-desc">Moments that determine how an entire experience is remembered — its emotional peak and its final state (Kahneman &amp; Fredrickson, peak-end rule)</div>
+    </div>
+  </section>
+
+  <!-- Field Appendix -->
+  <hr class="appendix-rule">
+
+  <section class="entry-section" id="solo-anchor">
+    <div class="appendix-eyebrow">Field Appendix</div>
+    <div class="entry-header">
+      <h2 class="entry-name">The Solo Anchor</h2>
+      <div class="entry-tagline">Standing alone in a bar, listening, and interjecting when something is worth it &mdash; refined.</div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Why This Works Already</div>
+      <p>Holding a position alone for a long stretch, without visible restlessness, is one of the strongest costly signals available in a bar. Nearly everyone in the room needs a reason to be standing where they are &mdash; a group, a conversation, a destination. Needing none is legible from across the room, and it runs four mechanisms at once:</p>
+      <ul class="inline-list">
+        <li><strong>Occupying space</strong> &mdash; low motion rate, settled weight, no threat-monitoring behavior</li>
+        <li><strong>Non-reactivity</strong> &mdash; a group leaves and your face doesn't change, which prices the departure at zero</li>
+        <li><strong>Attention as currency</strong> &mdash; you're listening rather than broadcasting, and you engage selectively</li>
+        <li><strong>The invisible audience</strong> &mdash; standing unexplained only works if you've stopped correcting for an imagined audience, which you have</li>
+      </ul>
+      <p>The approach is sound. What follows is not a redesign &mdash; it's three leaks and a mechanic.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Leak 1 &mdash; The Phone</div>
+      <p>This is the expensive one, because it inverts the exact signal the rest of the method generates. Standing alone doing nothing says <em>I am comfortable being unexplained.</em> Standing alone on a phone says <em>I have somewhere to hide.</em> The room reads the second one instantly and files it under nowhere-to-be.</p>
+      <p>It also destroys the interjection. A stranger who has been quietly present and then speaks is joining a conversation. A stranger who has been on a screen and then speaks was <strong>listening the whole time and pretending not to</strong> &mdash; the phone is what converts attentive into surveilling. And it costs you the read: you can't catch the thread you want to enter while looking down.</p>
+      <p>The rule isn't never. It's <strong>purposeful and brief</strong>: pick it up to do a specific thing, do it, put it away. Never as a default posture, never while a group is within earshot, and never in the ninety seconds on either side of an interjection.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Leak 2 &mdash; No Anchor</div>
+      <p>Stillness needs a legible reason for being where it is. Standing in open floor beside groups with no anchor is the thin line between <em>relaxed</em> and <em>lurking</em> &mdash; and it's the version that gets read wrong by people who never speak to you.</p>
+      <p>Anchor to something that explains your position without you having to: the bar rail with a drink in front of you, a ledge or high-top you're leaning on, a sightline to a screen. Same stillness, same silence, same duration &mdash; but the position now justifies itself. The bar rail is the strongest of these, because everyone standing at a bar has an obvious reason to be there and turning to the person beside you is the most normal thing in the room.</p>
+      <p>Second-order benefit: an anchored position generates <strong>adjacency</strong> instead of proximity. People come to the bar and stand next to you by default. That's a conversation that starts without either of you having crossed a room.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Leak 3 &mdash; Frozen vs. Settled</div>
+      <p>Cutting head movement is the right instinct pushed one notch too far. The goal is a <strong>low motion rate</strong>, not zero motion. Zero reads as tense, braced, or deliberately performing calm &mdash; the brittle failure mode from entry five.</p>
+      <p>Settled stillness still contains movement; it's just unhurried and externally caused. You react to what you hear &mdash; a real half-smile at a funny line, not a held blank face. The distinction the room actually reads is not <em>how much</em> you move but <em>what causes it</em>: motion driven by the environment reads as relaxed, motion driven by your own nerves reads as anxious.</p>
+      <p>Which reduces the whole thing to one rule: <strong>look at whatever you want, but never be first to look.</strong></p>
+      <p>That single constraint does more work than it appears to. A snap toward a noise is a startle response &mdash; vigilance, reflex, threat-monitoring. The identical look taken three seconds later reads as a decision. And it solves the harder problem for free: an attention bid is engineered to collect an <em>immediate</em> look &mdash; the head snap in the first half-second is the entire payoff. A look that arrives late pays the bidder nothing. So you never have to sort genuine events from people performing for the room, which is not a judgment you can reliably make in real time anyway. Being slow sorts them for you.</p>
+      <p>Two things the timing rule doesn't cover, both about <em>how</em> rather than <em>when</em>:</p>
+      <ul class="inline-list">
+        <li><strong>Turn, don't flick</strong> &mdash; eyes moving while the body stays frozen is the furtive version, and it's what actually reads as lurking. If it's worth looking at, take it with your head and hold it a beat.</li>
+        <li><strong>Don't retreat from a look</strong> &mdash; half-looking and snapping back reads as caught-looking, which costs more than either the look or the stillness would have on its own. Complete it, then return unhurried.</li>
+      </ul>
+    </div>
+
+    <div class="tells">
+      <div class="tells-col is-good">
+        <div class="tells-head">Settled</div>
+        <ul>
+          <li>Anchored at a rail or ledge</li>
+          <li>Hands still, drink held low</li>
+          <li>Reacts to the room, not to itself</li>
+          <li>Last to look, and turns fully</li>
+        </ul>
+      </div>
+      <div class="tells-col is-bad">
+        <div class="tells-head">Lurking</div>
+        <ul>
+          <li>Free-floating in open space</li>
+          <li>Phone as resting posture</li>
+          <li>Held blank face, no reactions</li>
+          <li>Eyes tracking, body frozen</li>
+          <li>Snaps toward every loud voice</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Laughing at Nothing</div>
+      <p>If you're the kind of person who thinks of something funny and laughs at it unprompted, understand first that this is <strong>the engine of the whole approach, not a flaw in it</strong>. The reason most people can't hold a solo position is not that they lack the technique &mdash; it's that being alone with nothing happening is unbearable, so they reach for the phone at minute four. Self-amusement is what makes long stillness genuine instead of performed. Don't suppress the trait. Manage where it lands.</p>
+      <p>Three situations, and the cost is completely different in each:</p>
+      <ul class="inline-list">
+        <li><strong>Nobody adjacent &mdash; no cost.</strong> Don't manage it at all. This is the spotlight effect: it feels conspicuous from the inside and is close to invisible from outside.</li>
+        <li><strong>Someone adjacent &mdash; the hiding is the problem, not the laugh.</strong> A laugh is neutral to charming; catching yourself, killing the smile, and scanning to see who noticed is the sequence that reads as unstable. Own it in four words instead &mdash; "sorry, thought of something stupid" &mdash; with no embarrassment in the delivery. It's also a fully legitimate cold open that requires no eavesdropping, and if the thought is any good it beats commenting on the TV.</li>
+        <li><strong>Inside a group while someone is talking &mdash; resolve immediately.</strong> An unexplained laugh during another person's sentence doesn't read as eccentric, it reads as laughing <em>at them</em>. Nobody will tell you; you'll just get quietly iced. Kill the ambiguity on the spot: "Not you &mdash; I just remembered something." Then hand the thought over or drop it.</li>
+      </ul>
+      <p>That last case is the one deliberate exception to entry ten's rule against explaining yourself. Normally, flagging your own small misstep is what makes it visible. Here what's being misread isn't a stumble, it's <strong>your intent toward the person in front of you</strong> &mdash; and that misread doesn't decay on its own. The governing principle across all three: the problem is never the laugh, it's an <em>unattached</em> laugh. Attach it to something &mdash; the thought, the room, the person &mdash; and it converts from odd to warm.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Reading the Group Before You Speak</div>
+      <p>Adam Kendon's work on <strong>F-formations</strong> describes how people in conversation arrange themselves to maintain a shared space between them &mdash; and the shape of that arrangement is a reliable, pre-verbal signal about whether a newcomer is welcome. You can read it from where you're standing, before committing to anything.</p>
+      <ul class="inline-list">
+        <li><strong>Open</strong> &mdash; a horseshoe or loose arc with a visible gap, bodies angled slightly outward, someone glancing around the room mid-conversation. The gap is not an accident. Groups that are open to arrivals leave one.</li>
+        <li><strong>Closed</strong> &mdash; a tight circle facing inward, no gap, lowered volume, two people angled squarely at each other. Do not enter. Volume is the fastest tell: a group talking loudly enough that you can hear them has already made the conversation semi-public.</li>
+        <li><strong>The hub</strong> &mdash; find who the group looks at after someone says something funny. That's the status center. Interject toward them and the group follows their read of you; interject toward the periphery and you're at the mercy of whoever's least secure.</li>
+        <li><strong>Topic class</strong> &mdash; some subjects are public property (the game, the bartender, a shared observation about the room, an argument about a fact) and some are not (anyone's job, relationship, or plans). Interject only into the first kind. That's usually what your instinct is already picking &mdash; the thing you can genuinely add to.</li>
+      </ul>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Interject Mechanic</div>
+      <p>Interjecting cold is the part with the most technique in it, and the whole thing is in the first three seconds. The mistake almost everyone makes is entering with a full opinion &mdash; a stranger's paragraph arriving unannounced. Enter with something short they can answer, then let them decide the size of the opening.</p>
+      <ul class="inline-list">
+        <li><strong>Enter on a laugh or a beat, never mid-sentence</strong> &mdash; the natural gap after a punchline is an invitation; a cut-in mid-thought is a dominance move you don't want to be making from outside the group.</li>
+        <li><strong>Address the speaker, not the circle</strong> &mdash; one person, direct, at conversational volume. Addressing the whole group is a bid for the floor before you've been granted standing.</li>
+        <li><strong>Keep it under a sentence</strong> &mdash; a question, a short correction, a flat one-liner. Short entries are cheap to reject, which is exactly why they get accepted.</li>
+        <li><strong>Don't explain that you were listening</strong> &mdash; no "sorry, I overheard you guys." Either say nothing about it or own it in three words. Apologizing for proximity announces that you think proximity needed an apology.</li>
+        <li><strong>Take the temperature once, then commit or release</strong> &mdash; if the answer comes back with a body turn toward you, you're in; keep going. If it comes back with a nod and a return to the circle, you're not; go quiet immediately and stay where you are. Do not push a second line into a closed door.</li>
+      </ul>
+      <p>The release is the highest-leverage habit here, and half of it is simply not making a face. The other half is the next section, because it's the one that costs the most when it goes wrong.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Never Relocate After a Miss</div>
+      <p>A <strong>miss</strong> is an interjection that doesn't take. Rarely hostility &mdash; almost always just a polite nod, a one-word answer, and the circle closing back up. The instinct in that moment is to leave: bathroom, other end of the bar, outside for air, or the soft version, phone out and drift. That instinct is the single most expensive reflex in this whole approach, for five reasons.</p>
+      <ul class="inline-list">
+        <li><strong>Relocating is what scores it as a rejection.</strong> The interjection alone is ambiguous &mdash; a stranger said something, it wasn't picked up, the night continues. Ambiguous events need an interpretation before they get filed, and nobody in that group will spend energy assigning one. Walking away supplies it for them, converting "guy said a thing" into "guy tried something and fled." You authored a meaning that wasn't there.</li>
+        <li><strong>It lands with the one audience that is actually watching.</strong> Not the room &mdash; the room isn't tracking you, per entry ten. But the two or three people you just addressed are briefly attending to you <em>because</em> you addressed them, and they're the ones who see the exit. Small audience, but the only one that was ever going to form a view.</li>
+        <li><strong>It confirms the exchange had stakes.</strong> The visible cost of a hit is the hit. Changing position is a visible cost &mdash; it says the thing mattered enough to alter your behavior. Staying says it cost nothing, and if it cost nothing, it wasn't a rejection.</li>
+        <li><strong>It retroactively rewrites the hour before it.</strong> This is the expensive part. The long comfortable stretch is the whole signal &mdash; <em>this person doesn't need anything from this room.</em> Leave thirty seconds after a failed line and that stretch gets re-read as waiting for an opening and giving up when it didn't come. Standing alone becomes hunting. You lose the anchor, not the exchange.</li>
+        <li><strong>It forecloses re-entry.</strong> Groups pick threads back up readily when nothing was marked dead. The topic turns, one of them comes to the bar beside you, someone remembers what you said. A second entry has mere exposure working for it that the first one didn't &mdash; by then you aren't a stranger, you're the person who's been standing there.</li>
+      </ul>
+      <p><strong>Status of this rule:</strong> the mechanisms it rests on are established &mdash; the spotlight effect, the visible cost of a reaction, mere exposure. The rule itself is an extension of them, not a research finding, and the timings below are working heuristics rather than measurements. Treat it as a reasoned default to test against your own reps.</p>
+      <p><strong>The phone is a relocation you perform in place.</strong> Reaching for it after a miss does everything walking away does &mdash; signals retreat, confirms stakes, breaks the anchor &mdash; without the walking, and the tight timing makes it more legible rather than less. The same is true of the pointed turn-away, the self-conscious smile-and-sip, and sudden interest in the TV. Any behavior change inside the first minute is the same move.</p>
+      <p>What staying looks like: nothing changes. Same posture, same drink height, same thing you were looking at before. Thirty seconds pass. The absence of a reaction is the entire technique.</p>
+      <p><strong>Hold your position, not their proximity.</strong> You keep the anchor because it was yours before they arrived &mdash; you don't follow, hover, or push a second line into a closed door. And moving later is fine once it has an external cause: an empty glass, an actual bathroom trip, someone you know arriving. Give it something like ten minutes with unrelated activity in between and the movement is uncoupled from the miss. The rule really only governs the first couple of minutes. Don't manufacture a reason either &mdash; performed purpose is more legible than just walking.</p>
+      <p><strong>Where the rule breaks.</strong> All of it assumes you can stay <em>genuinely</em> relaxed. Standing there rigid, performing nonchalance and replaying the line, is worse than leaving &mdash; tense and present is more legible than gone. If a miss actually rattles you, walking off is the honest option and it costs less than a frozen three minutes. The rule is worth following only for as long as it's true.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">Script</div>
+      <div class="script-block">
+        <div class="script-label">Cold interject from the anchor</div>
+        <p><span class="direction">[Group of three at the rail beside you. Open arc, one gap, loud enough to hear clearly. They're arguing about whether a bar across town has closed down. Natural pause after someone laughs.]</span></p>
+        <p><span class="speaker">You:</span> <span class="direction">[to the one who made the claim, not the group, same volume as them, no preamble]</span> "It hasn't closed. It moved."</p>
+        <p><span class="direction">[Read the return. Body turns toward you = in. Nod and re-close = out.]</span></p>
+        <p><span class="speaker">Them:</span> <span class="direction">[turning]</span> "Wait, seriously? Where?"</p>
+        <p><span class="speaker">You:</span> "Two blocks up, same owners. It's better now, which is annoying because I'd been telling people it got worse."</p>
+        <p><span class="direction">Six words to enter, a flat factual correction with no hedging and no apology for overhearing. The self-deprecating tag on the second line supplies warmth after the competence, in that order &mdash; correcting a stranger without it lands cold. If the return had been a nod, the correct move is silence and no movement: you stay at your rail, and nothing happened.</span></p>
+      </div>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Investment Ceiling</div>
+      <p>A common field observation: you connect with someone, it goes well, and past a certain point continued warmth stops earning and starts costing &mdash; you read as overly keen, or the other person begins acting as though they hold the position of strength. The instinct that follows is to pull back, cool off, withhold credence. The observation is real and there are three frameworks that explain it. The instinctive fix is the one part the evidence argues against.</p>
+      <ul class="inline-list">
+        <li><strong>Power-dependence</strong> (Emerson, 1962) &mdash; A's power over B equals B's dependence on A, and dependence rises with how much B values what A offers while falling with B's available alternatives. "They think they're in control" is what the model predicts mechanically as your evident valuation climbs and your alternatives appear to narrow. It's a ratio, not a score, and it moves from either side.</li>
+        <li><strong>Equity theory</strong> (Adams; Walster &amp; Hatfield) &mdash; relationships are evaluated on the balance of inputs to outputs, and lopsidedness produces distress in <em>both</em> parties, including the over-benefited one. Sustained one-directional investment doesn't accumulate. It sours.</li>
+        <li><strong>Gain-loss theory</strong> (Aronson &amp; Linder, 1965) &mdash; approval that increases over time produced more liking than approval that was uniformly positive throughout. Regard you had to earn is worth more than regard that was always there. This is genuine support for not delivering everything at once.</li>
+      </ul>
+      <p><strong>Where the instinctive fix fails.</strong> That same study's <em>loss</em> condition &mdash; positive regard that subsequently withdraws &mdash; produced more dislike than consistent negativity did. Withdrawing credence already given was the worst-performing of the four patterns. The hard-to-get literature converges: Walster et al. (1973) found uniformly hard-to-get didn't work, and what did was being <strong>selectively</strong> hard to get &mdash; discerning in general, genuinely warm to the specific person. Selectivity, not oscillation.</p>
+      <p>Interested-then-uninterested is a variable-ratio schedule, and those reliably produce persistent, preoccupied responding. But what they produce is <em>pursuit</em>, which is not regard &mdash; the pattern is associated with anxious attachment rather than admiration, and it has a tolerance problem, requiring larger swings over time to hold its effect. In this guide's terms it also relocates you from warm-and-competent to cold-and-competent: respected, resented, not sought out.</p>
+      <p><strong>The correction.</strong> What has a ceiling isn't warmth &mdash; it's <em>unreciprocated</em> investment. Reciprocated escalation has no ceiling; that's simply what a deepening relationship is. So cap the unmatched portion rather than the interest itself: invest at roughly the level being returned, and don't escalate ahead of the other person. This produces the exact appearance being engineered &mdash; never overly keen, never the one holding the bag &mdash; with no performance, no oscillation, and none of the instability that withdrawal signals. Non-neediness and strategic withdrawal look alike from outside for about a week, then diverge sharply.</p>
+      <p><strong>The transience objection, and why it inverts.</strong> If most of these people are never seen again, the longitudinal costs above &mdash; loss penalties, tolerance escalation, attachment effects &mdash; need repeat contact to appear, and largely don't. That's correct. But it argues against the oscillation rather than for it: in the one-off case <em>nothing you do scores differently</em>, so all the variance lives in the small durable subset &mdash; and the durable ones are by definition those with a second and third interaction, exactly where the loss penalty lands. You cannot identify which is which at minute five. Warmth costs nothing in the transient case and considerably less in the durable one, which makes it dominant. <em>(This paragraph is decision logic, not an empirical finding.)</em></p>
+      <p>Worth noting too that a regular's population is less transient than a single evening suggests. Mere exposure (Zajonc; meta-analyzed by Bornstein, 1989 &mdash; among the sturdier effects in the field) runs on repeat encounters, and repeat encounters are what returning to the same venue produces: the same bartenders, the same regulars, the same nights.</p>
+      <p><strong>Confidence.</strong> Emerson and equity theory are structural frameworks with broad support. Aronson &amp; Linder and Walster et al. are 1960s&ndash;70s social psychology &mdash; well known, but from the era and sample-size regime the replication crisis hit hardest; treat the direction as informative and the effect sizes as soft. The intermittent-reinforcement-to-anxious-attachment link is better described as clinical consensus than tightly controlled experimental evidence.</p>
+    </div>
+
+    <div class="sub-block">
+      <div class="sub-label">The Loop</div>
+      <ol class="protocol-list">
+        <li><strong>Anchor on arrival.</strong> Bar rail or ledge, drink low, sightline to the room. Position first, before anything else.</li>
+        <li><strong>Phone away and stays away.</strong> Purposeful use only, never as posture, never with a group in earshot.</li>
+        <li><strong>Settle, don't freeze.</strong> Low motion rate, real reactions to what you hear. Look at anything you want &mdash; just never be first to look, and turn your head rather than flicking your eyes.</li>
+        <li><strong>Read formations, not just conversations.</strong> Open arc plus public topic plus audible volume equals interjectable. Anything else, keep listening.</li>
+        <li><strong>Enter short, at a beat, to one person.</strong> Under a sentence. No apology for overhearing.</li>
+        <li><strong>Commit or release on the first return.</strong> Body turn means keep going; anything else means go quiet and hold position.</li>
+        <li><strong>Never relocate after a miss.</strong> No walking off, no phone, no turn-away &mdash; nothing changes for the first few minutes. Staying put is what keeps it a non-event.</li>
+        <li><strong>Match investment, don't cap warmth.</strong> Invest at the level being returned and don't escalate ahead of the other person. Same appearance as strategic coolness, none of the cost.</li>
+        <li><strong>Leave from a peak.</strong> If the night produced one good exchange, that's the night. Go while it's still the last thing that happened.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p><strong>Sources.</strong> Henrich &amp; Gil-White (2001) and Cheng, Tracy et al. (2013) on dominance vs. prestige; Ambady &amp; Rosenthal (1993) on thin slices; Willis &amp; Todorov (2006) on 100ms trait inference; Ranehill et al. (2015) on the failed replication of power-posing's hormonal effects; Hatfield, Cacioppo &amp; Rapson on emotional contagion and Barsade (2002) on the ripple effect; Itzchakov &amp; Kluger on high-quality listening; Fiske, Cuddy &amp; Glick on the warmth-competence model; Keltner et al. (2001) on teasing and status; Gilovich, Medvec &amp; Savitsky (2000) on the spotlight effect and illusion of transparency; Kahneman &amp; Fredrickson on the peak-end rule; Kendon on F-formations and the spatial organization of conversation; Emerson (1962) on power-dependence, Adams and Walster &amp; Hatfield on equity theory, Aronson &amp; Linder (1965) on gain-loss, Walster et al. (1973) on selective hard-to-get, and Zajonc with Bornstein's (1989) meta-analysis on mere exposure.</p>
+    <p><strong>A note on use.</strong> These describe how groups already read people — they are diagnostic before they are tactical. Used to stop leaking low-status signals you didn't know you were sending, they work. Used as a performance aimed at a room, they read as exactly what they are. The techniques that survive contact are the ones that stop being techniques.</p>
+    <p>Companion volume to the Cold Call series. Field guide, not gospel &mdash; test everything against your own reps.</p>
+  </footer>
+
+</div>
